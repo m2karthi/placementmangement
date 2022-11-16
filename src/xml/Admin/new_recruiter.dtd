@@ -1,0 +1,7 @@
+<!ELEMENT new_recruiter (id,company_name,GstNo,vision,createdAt)
+
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT company_name (#PCDATA)>
+<!ELEMENT GstNo (#PCDATA)>
+<!ELEMENT vision (#PCDATA)>
+<!ELEMENT createdAt (#PCDATA)>

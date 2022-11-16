@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE add_job SYSTEM "add_job.dtd">
+<add_job>
+	<job_details>
+		<designation>Software Developer</designation>
+		<description>Work on various frameworks and tech stacks such as MEAN, MERN and other cross-platform frameworks like React Native and Flutter.</description>
+	</job_details>
+	
+	<eligibility>
+		<10th_percentage>95.2</10th_percentage>
+		<12th_percentage>95.5</12th_percentage>
+		<cgpa>9.5</cgpa>
+		<program>CSE,ECE,EEE</program>
+	</eligibility>
+	
+	<salaryDetails>
+		<package>12 lpa</package>
+		<contactDetails>phone: 9854678901</contactDetails>
+	</salaryDetails>
+	
+	<selectionProcess>
+		<aptitude_round>True</aptitude_round>
+		<coding_round>True</coding_round>
+		<technical_round>True</technical_round>
+		<hr_round>False</hr_round>
+	</selectionProcess>
+	
+	<additionalRequirements>
+		<courses>Foundations of DSA, App developement fundamentals</courses>
+		<certificates>AWS Cloud Practitioner, Cisco Networking Fundamentals</certificates>
+	</additionalRequirements>
+
+</add_job>

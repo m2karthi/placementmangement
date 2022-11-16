@@ -1,0 +1,11 @@
+<!ELEMENT help_form (username,email,rollno,help_about,description)>
+
+<!ELEMENT username (#PCDATA)>
+
+<!ELEMENT email (#PCDATA)>
+
+<!ELEMENT rollno (#PCDATA)>
+
+<!ELEMENT help_about (#PCDATA)>
+
+<!ELEMENT description (#PCDATA)>

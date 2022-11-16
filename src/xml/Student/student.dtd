@@ -1,0 +1,34 @@
+
+<!ELEMENT student_info (basic_info,contact_info,education,grades,college_name)>
+
+
+<!ELEMENT basic_info (firstName,lastName,id,dob,address,nationality,state,city>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT nationality (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+
+<!ELEMENT contact_info (email,mobile,alternate_email,alternate_mobile)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT mobile (#PCDATA)>
+<!ELEMENT alternate_email (#PCDATA)>
+<!ELEMENT alternate_mobile (#PCDATA)>
+
+<!ELEMENT education (10th_marks,12th_marks,jee)>
+<!ELEMENT 10th_marks (#PCDATA)>
+<!ELEMENT 12th_marks (#PCDATA)>
+<!ELEMENT jee (#PCDATA)>
+
+
+<!ELEMENT grades (cgpa_at_2nd_sem,cgpa_at_4rth_sem,cgpa_at_6th_sem,cgpa_at_8th_sem>
+<!ELEMENT cgpa_at_2nd_sem (#PCDATA)>
+<!ELEMENT cgpa_at_4rth_sem (#PCDATA)>
+<!ELEMENT cgpa_at_6th_sem (#PCDATA)>
+<!ELEMENT cgpa_at_8th_sem (#PCDATA)>
+
+<!ENTITY campusname "ASE Coimbatore">
+<!ELEMENT campus_name (#PCDATA)>

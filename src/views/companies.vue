@@ -46,12 +46,12 @@
                         label="User Name"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <!-- <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.dob"
                         label="DOB"
                       ></v-text-field>
-                    </v-col>
+                    </v-col> -->
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.email"
@@ -141,18 +141,18 @@ export default {
     editedItem: {
       name: "",
       gst: "",
-      drive: null,
+      drive: 5,
       email: "",
-      lastDrive: "",
-      status: null,
+      lastDrive: "12/11/2022",
+      status: "Active",
     },
     defaultItem: {
       name: "",
       gst: "",
-      drive: null,
+      drive: 5,
       email: "",
-      lastDrive: "",
-      status: null,
+      lastDrive: "12/11/2022",
+      status: "Active",
     },
   }),
 

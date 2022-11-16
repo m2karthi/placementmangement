@@ -33,7 +33,6 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="designation"
                       label="Job Designation"
                       prepend-icon="mdi-briefcase"
                     >
@@ -49,11 +48,7 @@
                   </v-col>
                 </v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-textarea
-                    v-model="description"
-                    label="Job Description"
-                    prepend-icon="mdi-mail"
-                  >
+                  <v-textarea label="Job Description" prepend-icon="mdi-mail">
                   </v-textarea>
                 </v-col>
                 <v-btn class="blue" @click="tab = 1">Save and Next</v-btn>
@@ -130,11 +125,7 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field
-                    v-model="designation"
-                    label="Salary Pacakage"
-                    prepend-icon="mdi-cash"
-                  >
+                  <v-text-field label="Salary Pacakage" prepend-icon="mdi-cash">
                   </v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
@@ -147,11 +138,7 @@
                 </v-col>
               </v-row>
               <v-col cols="12" sm="6" md="4">
-                <v-textarea
-                  v-model="description"
-                  label="Bond Details"
-                  prepend-icon="mdi-mail"
-                >
+                <v-textarea label="Bond Details" prepend-icon="mdi-mail">
                 </v-textarea>
               </v-col>
               <v-btn class="blue" @click="tab = 3">Save and Next</v-btn>
@@ -227,7 +214,6 @@
               <v-row>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
-                    v-model="designation"
                     label="Additional Requirement Title"
                     prepend-icon="mdi-briefcase"
                   >
@@ -244,7 +230,6 @@
               </v-row>
               <v-col cols="12" sm="6" md="4">
                 <v-textarea
-                  v-model="description"
                   label="Additional Requirement Description"
                   prepend-icon="mdi-mail"
                 >

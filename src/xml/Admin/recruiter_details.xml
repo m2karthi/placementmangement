@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE recruit_details SYSTEM "recruiter_details.dtd">
+<recruit_details>
+
+	<company_name>Google</company_name>
+
+	<opening_date>12/11/2022</opening_date>
+
+	<closing_date>15/11/2022</closing_date>
+
+	<job_designation>Software Developer</job_designation>
+
+	<register_student>180</register_student>
+
+	<course>B.Tech</course>
+
+	<eligibility_cgpa>9.0</eligibility_cgpa>
+
+	<status>Active</status>
+
+</recruit_details>

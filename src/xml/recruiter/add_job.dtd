@@ -1,0 +1,25 @@
+<!ELEMENT add_job (job_details,eligibility,salaryDetails,selectionProcess,additionalRequirements)>
+
+<!ELEMENT job_details (designation,description)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT designation (#PCDATA)>
+
+<!ELEMENT eligibility (10th_percentage,12th_percentage,cgpa,program)>
+<!ELEMENT 10th_percentage (#PCDATA)>
+<!ELEMENT 12th_percentage (#PCDATA)>
+<!ELEMENT cgpa (#PCDATA)>
+<!ELEMENT program (#PCDATA)>
+
+<!ELEMENT salaryDetails (package,contactDetails)>
+<!ELEMENT package (#PCDATA)>
+<!ELEMENT contactDetails (#PCDATA)>
+
+<!ELEMENT selectionProcess (aptitude_round,coding_round,technical_round,hr_round)>
+<!ELEMENT aptitude_round (#PCDATA)>
+<!ELEMENT coding_round (#PCDATA)>
+<!ELEMENT technical_round (#PCDATA)>
+<!ELEMENT hr_round (#PCDATA)>
+
+<!ELEMENT additionalRequirements (courses,certificates)>
+<!ELEMENT courses (#PCDATA)>
+<!ELEMENT certificates (#PCDATA)>

@@ -1,0 +1,17 @@
+<!ELEMENT recruit_details (company_name,opening_date,closing_date,job_designation,register_student,course,eligibility_cgpa,status)>
+
+<!ELEMENT company_name (#PCDATA)>
+
+<!ELEMENT opening_date (#PCDATA)>
+
+<!ELEMENT closing_date (#PCDATA)>
+
+<!ELEMENT job_designation (#PCDATA)>
+
+<!ELEMENT register_student (#PCDATA)>
+
+<!ELEMENT course (#PCDATA)>
+
+<!ELEMENT eligibility_cgpa (#PCDATA)>
+
+<!ELEMENT status (#PCDATA)>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE new_recruiter SYSTEM "new_recruiter.dtd">
+
+<new_recruiter>
+<id>1024</id>
+<company_name>Amazon</company_name>
+<GstNo>1978654321</GstNo>
+<vision>To be able to create a better future!!!</vision>
+<createdAt>19/11/2000</createdAt>
+</new_recruiter>

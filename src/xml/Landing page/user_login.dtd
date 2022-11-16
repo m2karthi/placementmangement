@@ -1,0 +1,5 @@
+<!ELEMENT add_job (username,password)>
+
+<!ELEMENT username (#PCDATA)>
+
+<!ELEMENT password (#PCDATA)>

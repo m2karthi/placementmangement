@@ -3,7 +3,7 @@
     <v-data-table
       :headers="headers"
       :items="desserts"
-      sort-by="calories"
+      :search="search"
       class="elevation-1"
     >
       <template v-slot:[`item.img`]>
@@ -24,6 +24,15 @@
           <v-toolbar-title>Students List</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
+          <v-text-field
+            required
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+          <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
@@ -31,73 +40,85 @@
               </v-btn>
             </template>
             <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ formTitle }}</span>
-              </v-card-title>
+              <v-form validate @submit.prevent="save">
+                <v-card-title>
+                  <span class="text-h5">{{ formTitle }}</span>
+                </v-card-title>
 
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.name"
-                        label="Student Name"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.roleno"
-                        label="Role No"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.dob"
-                        label="DOB"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.email"
-                        label="Email"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.mobile"
-                        label="Mobile"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.cgpa"
-                        label="CGPA"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.course"
-                        label="Course"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-autocomplete
-                        v-model="editedItem.status"
-                        label="Status"
-                        :items="statuses"
-                      ></v-autocomplete>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          v-model="editedItem.name"
+                          label="Student Name"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          v-model="editedItem.roleno"
+                          label="Role No"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          v-model="editedItem.dob"
+                          label="DOB"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          type="email"
+                          v-model="editedItem.email"
+                          label="Email"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          type="number"
+                          v-model="editedItem.mobile"
+                          label="Mobile"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          type="number"
+                          v-model="editedItem.cgpa"
+                          label="CGPA"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          v-model="editedItem.course"
+                          label="Course"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-autocomplete
+                          v-model="editedItem.status"
+                          label="Status"
+                          :items="statuses"
+                        ></v-autocomplete>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">
-                  Cancel
-                </v-btn>
-                <v-btn color="blue darken-1" text @click="save"> Save </v-btn>
-              </v-card-actions>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="close">
+                    Cancel
+                  </v-btn>
+                  <v-btn type="submit" color="blue darken-1" text> Save </v-btn>
+                </v-card-actions>
+              </v-form>
             </v-card>
           </v-dialog>
           <v-dialog v-model="dialogDelete" max-width="550px">
@@ -138,6 +159,7 @@ export default {
   name: "students",
   data: () => ({
     dialog: false,
+    search: "",
     dialogDelete: false,
     headers: [
       {
@@ -210,7 +232,7 @@ export default {
     initialize() {
       this.desserts = [
         {
-          name: "Frozen Yogurt",
+          name: "Aadithya",
           roleno: "20444",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
@@ -220,8 +242,8 @@ export default {
           status: "On Progress",
         },
         {
-          name: "Frozen Yogurt",
-          roleno: "20444",
+          name: "Logeshwaran",
+          roleno: "20435",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -230,8 +252,8 @@ export default {
           status: "Placed",
         },
         {
-          name: "Frozen Yogurt",
-          roleno: "20444",
+          name: "Pradeep",
+          roleno: "20447",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -240,8 +262,8 @@ export default {
           status: "Not Placed",
         },
         {
-          name: "Frozen Yogurt",
-          roleno: "20444",
+          name: "Praveen",
+          roleno: "20449",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -251,9 +273,9 @@ export default {
         },
         {
           name: "Frozen Yogurt",
-          roleno: "20444",
+          roleno: "20403",
           dob: "12/02/2003",
-          email: "qwerty@gmail.com",
+          email: "Aadithya@gmail.com",
           mobile: 999475214,
           cgpa: 8.6,
           course: "B.tech",
