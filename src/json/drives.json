@@ -1,0 +1,46 @@
+[{
+    "name": "Webilicious",
+    "open": "10/11/2022",
+    "close": "14/11/2022",
+    "designation": "Software Developer",
+    "regStud": 180,
+    "cgpa": 9.3,
+    "course": "B.Tech",
+    "status": "Closing Soon"
+}, {
+    "name": "TechCorp",
+    "open": "09/01/2022",
+    "close": "13/01/2022",
+    "designation": "Data Scientist",
+    "regStud": 150,
+    "cgpa": 8.5,
+    "course": "M.S. Data Science",
+    "status": "Closing Soon"
+}, {
+    "name": "Acme Inc.",
+    "open": "07/15/2022",
+    "close": "11/15/2022",
+    "designation": "Product Manager",
+    "regStud": 120,
+    "cgpa": 7.5,
+    "course": "M.B.A.",
+    "status": "Closing Soon"
+}, {
+    "name": "Innovative Solutions",
+    "open": "05/30/2022",
+    "close": "09/30/2022",
+    "designation": "DevOps Engineer",
+    "regStud": 100,
+    "cgpa": 8.0,
+    "course": "B.S. Computer Science",
+    "status": "Closing Soon"
+}, {
+    "name": "Bright Futures",
+    "open": "03/20/2022",
+    "close": "07/20/2022",
+    "designation": "Software Engineer",
+    "regStud": 80,
+    "cgpa": 9.0,
+    "course": "B.S. Computer Science",
+    "status": "Closing Soon"
+}]

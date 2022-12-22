@@ -1,0 +1,65 @@
+[{
+    "name": "Aadithya",
+    "roleno": "20444",
+    "dob": "12/02/2003",
+    "email": "qwerty@gmail.com",
+    "mobile": 999475214,
+    "cgpa": 8.6,
+    "course": "B.tech",
+    "status": "On Progress"
+},
+{
+    "name": "John",
+    "roleno": "12345",
+    "dob": "01/01/2000",
+    "email": "john@example.com",
+    "mobile": 5551234567,
+    "cgpa": 3.5,
+    "course": "B.S. Computer Science",
+    "status": "Graduated"
+}
+,
+ {
+    "name": "Jane",
+    "roleno": "23456",
+    "dob": "02/14/1999",
+    "email": "jane@example.com",
+    "mobile": 5552345678,
+    "cgpa": 3.9,
+    "course": "B.A. English",
+    "status": "On Progress"
+}
+,
+ {
+    "name": "Bob",
+    "roleno": "34567",
+    "dob": "03/21/1998",
+    "email": "bob@example.com",
+    "mobile": 5553456789,
+    "cgpa": 4.0,
+    "course": "B.S. Mechanical Engineering",
+    "status": "On Progress"
+}
+,
+ {
+    "name": "Alice",
+    "roleno": "45678",
+    "dob": "04/01/1997",
+    "email": "alice@example.com",
+    "mobile": 5554321098,
+    "cgpa": 3.7,
+    "course": "B.S. Biology",
+    "status": "Graduated"
+},
+{
+    "name": "Emily",
+    "roleno": "56789",
+    "dob": "05/12/1996",
+    "email": "emily@example.com",
+    "mobile": 5555432109,
+    "cgpa": 3.8,
+    "course": "B.A. History",
+    "status": "On Progress"
+}
+
+]

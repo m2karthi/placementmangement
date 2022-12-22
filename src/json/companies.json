@@ -1,0 +1,53 @@
+[{
+    "name": "Amazon",
+    "gst": "PAB34HK6NSGD7X",
+    "drive": 3,
+    "email": "contact@amazon.com",
+    "lastDrive": "12/08/2022",
+    "status": "active"
+}, 
+{
+    "name": "Apple",
+    "gst": "GST123456789",
+    "drive": 4,
+    "email": "contact@apple.com",
+    "lastDrive": "01/15/2022",
+    "status": "active"
+}
+, 
+{
+    "name": "Microsoft",
+    "gst": "MSFT987654321",
+    "drive": 2,
+    "email": "contact@microsoft.com",
+    "lastDrive": "03/20/2022",
+    "status": "inactive"
+}
+, 
+{
+    "name": "Google",
+    "gst": "GGL123456789",
+    "drive": 5,
+    "email": "contact@google.com",
+    "lastDrive": "05/30/2022",
+    "status": "active"
+},
+{
+    "name": "Facebook",
+    "gst": "FBK987654321",
+    "drive": 3,
+    "email": "contact@facebook.com",
+    "lastDrive": "07/15/2022",
+    "status": "active"
+},
+{
+    "name": "Tesla",
+    "gst": "TSL123456789",
+    "drive": 1,
+    "email": "contact@tesla.com",
+    "lastDrive": "09/01/2022",
+    "status": "inactive"
+}
+
+
+]
