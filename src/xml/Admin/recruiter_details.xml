@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE recruit_details SYSTEM "recruiter_details.dtd">
-<recruit_details>
+<!-- <!DOCTYPE recruit_details SYSTEM "recruiter_details.dtd"> -->
+<recruit_details
+xmlns="https://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="https://www.w3schools.com recruiter_details.xsd">
 
 	<company_name>Google</company_name>
 
-	<opening_date>12/11/2022</opening_date>
+	<opening_date>2022-12-20</opening_date>
 
-	<closing_date>15/11/2022</closing_date>
+	<closing_date>2022-12-25</closing_date>
 
 	<job_designation>Software Developer</job_designation>
 

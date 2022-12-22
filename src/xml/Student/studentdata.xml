@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE student SYSTEM "student.dtd">
+<!-- <!DOCTYPE student SYSTEM "student.dtd"> -->
 
-<student_info>
+<student_info
+xmlns="https://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="https://www.w3schools.com studentdata.xsd">
 <basic_info>
 	<firstName>John Denver</firstName>
 	<lastName>Daniels</lastName>
 	<id>1024</id>
-	<dob>08/06/2022</dob>
+	<dob>2022-04-12</dob>
 	<address>2/824 (30), Vela Avvenue, Tirupur</address>
 	<nationality>Indian</nationality>
 	<state>Tamilnadu</state>
@@ -21,18 +24,18 @@
 </contact_info>
 
 <education>	
-	<10th_marks>460</10th_marks>
-	<12th_marks>476</12th_marks>
+	<tenth_percentage>460</tenth_percentage>
+	<twelth_percentage>476</twelth_percentage>
 	<jee>97.8</jee>
 </education>
 
 <grades>
 	<cgpa_at_2nd_sem>9.1</cgpa_at_2nd_sem>
-	<cgpa_at_4rth_sem>8.9</cgpa_at_4rth_sem>
+	<cgpa_at_4th_sem>8.9</cgpa_at_4th_sem>
 	<cgpa_at_6th_sem>8.5</cgpa_at_6th_sem>
 	<cgpa_at_8th_sem>8.7</cgpa_at_8th_sem>
 </grades>
 
-<campus_name>&campusname;</campus_name>
+<campus_name>Coimbatore</campus_name>
 
 </student_info>

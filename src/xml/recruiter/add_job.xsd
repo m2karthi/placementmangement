@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="https://www.w3schools.com"
+xmlns="https://www.w3schools.com"
+elementFormDefault="qualified">
+
+<xs:element name="add_job">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="job_details" >
+       <xs:complexType>
+          <xs:sequence>
+            <xs:element name="designation" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+      <xs:element name="eligibility" ><xs:complexType>
+          <xs:sequence>
+            <xs:element name="tenth_percentage" type="xs:decimal"/>
+            <xs:element name="twelth_percentage" type="xs:decimal"/>
+            <xs:element name="cgpa" type="xs:decimal"/>
+            <xs:element name="program" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+
+      <xs:element name="salaryDetails" >
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="package" type="xs:string"/>
+            <xs:element name="contactDetails" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+      <xs:element name="selectionProcess" >
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="aptitude_round" type="xs:boolean"/>
+            <xs:element name="coding_round" type="xs:boolean"/>
+            <xs:element name="technical_round" type="xs:boolean"/>
+            <xs:element name="hr_round" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+      <xs:element name="additionalRequirements" >
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="courses" type="xs:string"/>
+            <xs:element name="certificates" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>

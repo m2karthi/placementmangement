@@ -211,6 +211,11 @@ export default {
           status: "active",
         },
       ];
+      console.log(
+        "%cJSON CompaniesData: ",
+        "color:blue",
+        JSON.stringify(this.desserts)
+      );
     },
 
     editItem(item) {

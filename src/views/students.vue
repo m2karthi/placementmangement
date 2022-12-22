@@ -282,6 +282,12 @@ export default {
           status: "Not Placed",
         },
       ];
+
+      console.log(
+        "%cJSON StudentData: ",
+        "color:green",
+        JSON.stringify(this.desserts)
+      );
     },
 
     getColor(status) {

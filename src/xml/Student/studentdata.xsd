@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="https://www.w3schools.com"
+xmlns="https://www.w3schools.com"
+elementFormDefault="qualified">
+
+<xs:element name="student_info">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="basic_info" >
+       <xs:complexType>
+          <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="dob" type="xs:date"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="nationality" type="xs:string"/>
+            <xs:element name="state" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+      <xs:element name="contact_info" ><xs:complexType>
+          <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="mobile" type="xs:integer"/>
+            <xs:element name="alternate_email" type="xs:string"/>
+            <xs:element name="alternate_mobile" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+
+
+      <xs:element name="education" >
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tenth_percentage" type="xs:decimal"/>
+            <xs:element name="twelth_percentage" type="xs:decimal"/>
+            <xs:element name="jee" type="xs:decimal"/>
+          
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+      <xs:element name="grades" >
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cgpa_at_2nd_sem" type="xs:decimal"/>
+            <xs:element name="cgpa_at_4th_sem" type="xs:decimal"/>
+            <xs:element name="cgpa_at_6th_sem" type="xs:decimal"/>
+            <xs:element name="cgpa_at_8th_sem" type="xs:decimal"/>
+          </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+        <xs:element name="campus_name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>

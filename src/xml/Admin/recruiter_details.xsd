@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="https://www.w3schools.com"
+xmlns="https://www.w3schools.com"
+elementFormDefault="qualified">
+
+<xs:element name="recruit_details">
+  <xs:complexType>
+    <xs:sequence>
+      
+            <xs:element name="company_name" type="xs:string"/>
+            <xs:element name="opening_date" type="xs:date"/>
+            <xs:element name="closing_date" type="xs:date"/>
+            <xs:element name="job_designation" type="xs:string"/>
+            <xs:element name="register_student" type="xs:integer"/>
+            <xs:element name="course" type="xs:string"/>
+            <xs:element name="eligibility_cgpa" type="xs:decimal"/>
+            <xs:element name="status" type="xs:string"/>
+          
+      
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>

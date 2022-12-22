@@ -136,6 +136,11 @@ export default {
           status: "Closed",
         },
       ];
+      console.log(
+        "%cJSON DrivesData: ",
+        "color:yellow",
+        JSON.stringify(this.desserts)
+      );
     },
 
     getColor(status) {
