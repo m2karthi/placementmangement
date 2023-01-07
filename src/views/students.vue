@@ -58,7 +58,7 @@
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           required
-                          v-model="editedItem.roleno"
+                          v-model="editedItem.rollno"
                           label="Role No"
                         ></v-text-field>
                       </v-col>
@@ -176,7 +176,7 @@ export default {
         value: "name",
       },
 
-      { text: "RollNo", value: "roleno" },
+      { text: "RollNo", value: "rollno" },
       { text: "DOB", value: "dob" },
       { text: "Email", value: "email" },
       { text: "Mobile (+91)", value: "mobile" },
@@ -190,7 +190,7 @@ export default {
     editedIndex: -1,
     editedItem: {
       name: "",
-      roleno: "",
+      rollno: "",
       dob: "",
       email: "",
       mobile: null,
@@ -200,7 +200,7 @@ export default {
     },
     defaultItem: {
       name: "",
-      roleno: "",
+      rollno: "",
       dob: "",
       email: "",
       mobile: null,
@@ -234,7 +234,7 @@ export default {
       this.desserts = [
         {
           name: "Aadithya",
-          roleno: "20444",
+          rollno: "20444",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -244,7 +244,7 @@ export default {
         },
         {
           name: "Logeshwaran",
-          roleno: "20435",
+          rollno: "20435",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -254,7 +254,7 @@ export default {
         },
         {
           name: "Pradeep",
-          roleno: "20447",
+          rollno: "20447",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -264,7 +264,7 @@ export default {
         },
         {
           name: "Praveen",
-          roleno: "20449",
+          rollno: "20449",
           dob: "12/02/2003",
           email: "qwerty@gmail.com",
           mobile: 999475214,
@@ -274,7 +274,7 @@ export default {
         },
         {
           name: "Frozen Yogurt",
-          roleno: "20403",
+          rollno: "20403",
           dob: "12/02/2003",
           email: "Aadithya@gmail.com",
           mobile: 999475214,
