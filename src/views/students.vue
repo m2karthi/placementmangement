@@ -154,6 +154,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: "students",
@@ -334,6 +335,26 @@ export default {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
         this.desserts.push(this.editedItem);
+        const newUser = {
+          rollno: this.editedItem.rollno,
+          name: this.editedItem.name,
+          dob: this.editedItem.dob,
+          email: this.editedItem.email,
+          mobile: this.editedItem.mobile,
+          cgpa: this.editedItem.cgpa,
+          course: this.editedItem.course,
+          status: this.editedItem.status,
+        };
+
+        console.log("newuser", newUser);
+        axios
+          .post("http://192.168.60.28:3000/user", newUser)
+          .then(function (response) {
+            console.log("response after adding student", response);
+          })
+          .catch(function (error) {
+            console.log("error in adding student", error);
+          });
       }
       this.close();
     },
