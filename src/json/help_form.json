@@ -1,0 +1,26 @@
+[{
+    "queryId": 1,
+    "querySubject": "Placement process",
+    "queryDesc": "Can you provide more information on the placement process for companies visiting the campus?",
+    "createdAt": "2022-01-01T12:00:00"
+}, {
+    "queryId": 2,
+    "querySubject": "Internship opportunities",
+    "queryDesc": "Are there any internship opportunities available for students in the final year?",
+    "createdAt": "2022-01-02T15:00:00"
+}, {
+    "queryId": 3,
+    "querySubject": "Resume preparation",
+    "queryDesc": "Can you provide tips for preparing a strong resume for placement interviews?",
+    "createdAt": "2022-01-03T18:00:00"
+}, {
+    "queryId": 4,
+    "querySubject": "Interview skills",
+    "queryDesc": "Can you suggest some resources for improving interview skills?",
+    "createdAt": "2022-01-04T21:00:00"
+}, {
+    "queryId": 5,
+    "querySubject": "Placement eligibility",
+    "queryDesc": "What are the eligibility criteria for students to participate in the placement process?",
+    "createdAt": "2022-01-05T00:00:00"
+}]

@@ -2,7 +2,11 @@
 
 <!DOCTYPE help_form SYSTEM "help_form.dtd">
 
-<help_form>
+<help_form 
+xmlns="https://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="https://www.w3schools.com help_form.xsd">
+>
 	<username>Pradeep Karthik</username>
 
 	<email>pradeepkarthik@gmail.com</email>
