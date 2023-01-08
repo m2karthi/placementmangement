@@ -32,7 +32,9 @@
               </v-card-title>
 
               <v-card-text>
-                <v-container>
+                <v-form validate @submit.prevent="save">
+                <v-card-text>
+                  <v-container>
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
@@ -46,12 +48,6 @@
                         label="User Name"
                       ></v-text-field>
                     </v-col>
-                    <!-- <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.dob"
-                        label="DOB"
-                      ></v-text-field>
-                    </v-col> -->
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.email"
@@ -66,12 +62,29 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.vision"
-                        label="vision"
+                        v-model="editedItem.lastDrive"
+                        label="lastDrive"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.drive"
+                        label="drive"
                       ></v-text-field>
                     </v-col>
                   </v-row>
+                  <v-col cols="12" sm="6" md="4">
+                        <v-autocomplete
+                          v-model="editedItem.status"
+                          label="Status"
+                          :items="statuses"
+                        ></v-autocomplete>
+                      </v-col>
+                  <v-row>
+                  </v-row>
                 </v-container>
+              </v-card-text>
+              </v-form>
               </v-card-text>
 
               <v-card-actions>
@@ -116,7 +129,7 @@
   <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from "axios";
 export default {
   name: "Home",
   data: () => ({
@@ -137,6 +150,7 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
+    statuses: ["Active", "Inactive"],
     editedIndex: -1,
     editedItem: {
       name: "",
@@ -176,46 +190,56 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Amazon",
-          gst: "PAB34HK6NSGD7X",
-          drive: 3,
-          email: "contact@amazon.com",
-          lastDrive: "12/08/2022",
-          status: "active",
-        },
-        {
-          name: "Amazon",
-          gst: "PAB34HK6NSGD7X",
-          drive: 3,
-          email: "contact@amazon.com",
-          lastDrive: "12/08/2022",
-          status: "active",
-        },
-        {
-          name: "Amazon",
-          gst: "PAB34HK6NSGD7X",
-          drive: 3,
-          email: "contact@amazon.com",
-          lastDrive: "12/08/2022",
-          status: "active",
-        },
-        {
-          name: "Amazon",
-          gst: "PAB34HK6NSGD7X",
-          drive: 3,
-          email: "contact@amazon.com",
-          lastDrive: "12/08/2022",
-          status: "active",
-        },
-      ];
+    async initialize() {
+
+      const response = await axios.post("http://localhost:3000/getrecruiter",{});
+      let resp = response.data;
+
+
+      this.desserts = resp.items 
+
+      console.log(typeof(this.desserts))
+
+      // this.desserts = [
+      //   {
+      //     name: "Amazon",
+      //     gst: "PAB34HK6NSGD7X",
+      //     drive: 3,
+      //     email: "contact@amazon.com",
+      //     lastDrive: "12/08/2022",
+      //     status: "active",
+      //   },
+      //   {
+      //     name: "Amazon",
+      //     gst: "PAB34HK6NSGD7X",
+      //     drive: 3,
+      //     email: "contact@amazon.com",
+      //     lastDrive: "12/08/2022",
+      //     status: "active",
+      //   },
+        // {
+        //   name: "Amazon",
+        //   gst: "PAB34HK6NSGD7X",
+        //   drive: 3,
+        //   email: "contact@amazon.com",
+        //   lastDrive: "12/08/2022",
+        //   status: "active",
+        // },
+      //   {
+      //     name: "Amazon",
+      //     gst: "PAB34HK6NSGD7X",
+      //     drive: 3,
+      //     email: "contact@amazon.com",
+      //     lastDrive: "12/08/2022",
+      //     status: "active",
+      //   },
+      // ];
       console.log(
         "%cJSON CompaniesData: ",
         "color:blue",
         JSON.stringify(this.desserts)
       );
+
     },
 
     editItem(item) {
@@ -230,8 +254,18 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
+    async deleteItemConfirm() {
       this.desserts.splice(this.editedIndex, 1);
+
+      let userdetail = {
+        username: this.editedItem.username
+      }
+
+      const response = await axios.post("http://localhost:3000/deletecompany", userdetail);
+      let resp = response.data;
+
+      console.log(resp);
+
       this.closeDelete();
     },
 
@@ -251,14 +285,33 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        console.log("Error")
       } else {
         this.desserts.push(this.editedItem);
+        const newUser = {
+          name: this.editedItem.name,
+          username: this.editedItem.username,
+          email: this.editedItem.email,
+          gst: this.editedItem.gst,
+          lastDrive: this.editedItem.lastDrive,
+          drive: this.editedItem.drive,
+          status: this.editedItem.status
+        };
+
+        console.log("newuser", newUser);
+
+        const response = await axios.post("http://localhost:3000/addrecruiter", newUser);
+        let resp = response.data;
+
+        console.log(resp)
+
       }
       this.close();
     },
+
   },
 };
 </script>

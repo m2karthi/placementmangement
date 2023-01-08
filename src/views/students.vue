@@ -230,7 +230,15 @@ export default {
   },
 
   methods: {
-    initialize() {
+    async initialize() {
+
+      const response = await axios.post("http://localhost:3000/getstudent",{});
+      let resp = response.data;
+
+      console.log(resp)
+
+      this.desserts = resp.items
+
       this.desserts = [
         {
           name: "Aadithya",
@@ -330,7 +338,7 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
@@ -347,14 +355,20 @@ export default {
         };
 
         console.log("newuser", newUser);
-        axios
-          .post("http://192.168.60.28:3000/user", newUser)
-          .then(function (response) {
-            console.log("response after adding student", response);
-          })
-          .catch(function (error) {
-            console.log("error in adding student", error);
-          });
+        // await axios
+        //   .post("http://localhost:3000/addstudent", newUser)
+        //   .then(function (response) {
+        //     console.log("response after adding student", response);
+        //   })
+        //   .catch(function (error) {
+        //     console.log("error in adding student", error);
+        //   });
+
+        const response = await axios.post("http://localhost:3000/addstudent", newUser);
+        let resp = response.data;
+
+        console.log(resp)
+
       }
       this.close();
     },
