@@ -46,14 +46,14 @@ export default {
   methods: {
     async submit() {
       const credentials = {
-        email: this.email,
+        username: this.email,
         password: this.password,
       };
       console.log("Login", credentials);
       await axios
         .post("http://localhost:3000/login", credentials)
         .then((response) => {
-          console.log("User Loged in", response);
+          console.log("User Loged in", response.data); 
         })
         .catch((error) => {
           this.errorMsg = error.msg;
