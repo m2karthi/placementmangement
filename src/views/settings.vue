@@ -48,6 +48,8 @@ export default {
         let resp = response.data;
 
         console.log(resp)
+
+        window.alert("Your Password has been updated!!!")
     },
   },
 

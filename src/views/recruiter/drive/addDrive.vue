@@ -389,6 +389,8 @@ export default {
       this.bondDetails = null;
       this.addReq = null;
       this.addDes = null;
+
+      window.alert("New Drive Has been Added!!!")
     },
   },
 };

@@ -19,7 +19,7 @@
           label="Query Description"
         ></v-textarea>
       </v-col>
-      <v-btn class="primary pa-2 ma-2"> Submit </v-btn>
+      <v-btn class="primary pa-2 ma-2" @click="donotif"> Submit </v-btn>
     </v-card>
   </div>
 </template>
@@ -27,6 +27,14 @@
 <script>
 export default {
   name: "help",
+
+  methods:{
+    donotif()
+    {
+      window.alert("You query has been sent to us")
+    }
+  }
+
 };
 </script>
 
