@@ -20,7 +20,7 @@
         <v-card-actions>
           <v-btn color="orange" @click="applyItem" text> Apply Now </v-btn>
 
-          <v-btn color="orange" to="/student/singleDrive" text> Explore </v-btn>
+          <v-btn color="orange" @click="explore" text> Explore </v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -69,8 +69,14 @@ export default {
       snackbar: false,
       text: "My timeout is set to 2000.",
       timeout: 2000,
+      username: "",
     };
   },
+  created() {
+    this.username = this.$route.params.id;
+    console.log("username", this.username);
+  },
+
   methods: {
     applyItem() {
       this.applyDialog = true;
@@ -84,6 +90,10 @@ export default {
 
     closeApplyItem() {
       this.applyDialog = false;
+    },
+    explore() {
+      console.log("explore");
+      this.$router.push(`/student/singleDrive/${this.username}`);
     },
   },
 };

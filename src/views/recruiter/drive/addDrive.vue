@@ -40,12 +40,20 @@
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-file-input
-                      show-size
-                      counter
-                      multiple
-                      label="Upload Job Pdf"
-                    ></v-file-input>
+                    <v-text-field
+                      label="Opening Date"
+                      v-model="openingDate"
+                      prepend-icon="mdi-briefcase"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Closing Date"
+                      v-model="closingDate"
+                      prepend-icon="mdi-briefcase"
+                    >
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-col cols="12" sm="6" md="4">
@@ -262,7 +270,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "addDrive",
   data() {
@@ -282,6 +290,19 @@ export default {
         "HR Round-1",
         "HR Round-2",
       ],
+      jobDesignation: null,
+      tenthPercentage: null,
+      jobDescription: null,
+      twlethPercentage: null,
+      course: null,
+      closingDate: null,
+      openingDate: null,
+      deptSelected: null,
+      mincgpa: null,
+      salary: null,
+      bondDetails: null,
+      addReq: null,
+      addDes: null,
 
       messages: [
         {
@@ -334,6 +355,8 @@ export default {
         jobDescription: this.jobDescription,
         twlethPercentage: this.twlethPercentage,
         course: this.course,
+        closingDate: this.closingDate,
+        openingDate: this.openingDate,
         deptSelected: this.deptSelected,
         mincgpa: this.mincgpa,
         events: this.events,
@@ -341,15 +364,18 @@ export default {
         bondDetails: this.bondDetails,
         addReq: this.addReq,
         addDes: this.addDes,
-        company_name: ""
+        company_name: this.$route.params.id,
+        _id: this.$route.params.id,
       };
 
-      const response = await axios.post("http://localhost:3000/adddrive", newdrive);
+      console.log("newdrive", newdrive);
+      const response = await axios.post(
+        "http://localhost:3000/adddrive",
+        newdrive
+      );
       let resp = response.data;
 
-      console.log(resp)
-
-      console.log("newdrive", newdrive);
+      console.log(resp);
 
       this.jobDesignation = null;
       this.tenthPercentage = null;

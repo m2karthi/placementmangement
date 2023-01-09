@@ -3,7 +3,7 @@
     <div class="title d-flex">
       <h3>Drives</h3>
       <v-spacer></v-spacer>
-      <v-btn color="primary" to="/recruiter/drives/addnew" class="white--text">
+      <v-btn color="primary" @click="pushroute" class="white--text">
         <v-icon>mdi-plus</v-icon>
         New Drive
       </v-btn>
@@ -68,6 +68,7 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
+    username: "",
     statuses: ["Placed", "Not Placed", "On Progress"],
     editedIndex: -1,
     editedItem: {
@@ -113,6 +114,8 @@ export default {
 
   methods: {
     initialize() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
       this.desserts = [
         {
           name: "Amazon",
@@ -146,7 +149,9 @@ export default {
         },
       ];
     },
-
+    pushroute() {
+      this.$router.push(`/recruiter/${this.username}/drives/addnew/`);
+    },
     getColor(status) {
       if (status == "Closed") return "red";
       else if (status == "Closing Soon") return "orange";

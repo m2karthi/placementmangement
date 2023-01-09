@@ -92,7 +92,7 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Pradeep</v-list-item-title>
+                <v-list-item-title>{{ username }}</v-list-item-title>
                 <v-list-item-subtitle
                   >You have a new notification</v-list-item-subtitle
                 >
@@ -149,7 +149,7 @@
           src="../assets/profile-small.svg"
         />
         <div class="mr-3 ml-2">
-          <div class="black--text">Pradeep</div>
+          <div class="black--text">{{ username }}</div>
           <div class="grey--text subtitle-2">Student</div>
         </div>
         <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
@@ -203,6 +203,7 @@ export default {
       menu: false,
       message: false,
       hints: true,
+      username: null,
     };
   },
   created() {
@@ -211,6 +212,8 @@ export default {
   computed: {},
   methods: {
     async init() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
       this.getMenuItems();
     },
 
@@ -219,21 +222,21 @@ export default {
         {
           title: "Home",
           icon: "fa-solid fa-house",
-          route: "/student/dashboard",
+          route: "/student/dashboard/" + this.username,
         },
         {
           title: "Job Applicatons",
-          route: "/student/drives",
+          route: "/student/drives/" + this.username,
           icon: "fa-solid fa-paperclip",
         },
         {
           title: "Profile",
-          route: "/student/user",
+          route: "/student/user/" + this.username,
           icon: "fa-solid fa-graduation-cap",
         },
         {
           title: "Help",
-          route: "/student/help",
+          route: "/student/help/" + this.username,
           icon: "mdi-help-network",
         },
       ];

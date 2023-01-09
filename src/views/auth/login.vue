@@ -54,6 +54,21 @@ export default {
         .post("http://localhost:3000/login", credentials)
         .then((response) => {
           console.log("User Loged in", response.data);
+          if (response.data.reqcode == 404) {
+            this.errorMsg = "Login failed";
+            this.err = true;
+          } else {
+            this.err = false;
+            const username = response.data.username;
+            if (response.data.usertype == "Student") {
+              this.$router.push(`/student/dashboard/${username}`);
+            } else if (response.data.usertype == "Admin") {
+              this.$router.push("/home");
+            } else if (response.data.usertype == "Recruiter") {
+              this.$router.push(`/recruiter/${username}/dashboard`);
+            }
+            console.log("Student Loged in", response.data.usertype);
+          }
         })
         .catch((error) => {
           this.errorMsg = error.message;
