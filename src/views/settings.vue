@@ -19,7 +19,7 @@
           label="Remarks"
         ></v-textarea>
       </v-col>
-      <v-btn class="primary pa-2 ma-2"> Update </v-btn>
+      <v-btn class="primary pa-2 ma-2" @click="savesetting"> Update </v-btn>
     </v-card>
   </div>
 </template>
