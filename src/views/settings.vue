@@ -7,7 +7,7 @@
         <v-text-field
           filled
           solo
-          v-model="subject"
+          v-model="admin_password"
           label="Admin Password"
         ></v-text-field>
       </v-col>
@@ -25,8 +25,32 @@
 </template>
   
   <script>
+  import axios from 'axios';
 export default {
   name: "settings",
+
+  data(){
+    return {
+      admin_password: "",
+      description: ""
+    }
+  },
+
+  methods: {
+    async savesetting()
+    {
+        let newuser = {
+          username: "",
+          newpassword: this.admin_password
+        }
+
+        const response = await axios.post("http://localhost:3000/adminpassword", newuser);
+        let resp = response.data;
+
+        console.log(resp)
+    },
+  },
+
 };
 </script>
   

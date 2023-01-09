@@ -7,7 +7,7 @@
         <v-text-field
           filled
           solo
-          v-model="subject"
+          v-model="recruiter_password"
           label="Recuirter Password"
         ></v-text-field>
       </v-col>
@@ -19,14 +19,38 @@
           label="Remarks"
         ></v-textarea>
       </v-col>
-      <v-btn class="primary pa-2 ma-2"> Update </v-btn>
+      <v-btn class="primary pa-2 ma-2" @click="savesetting"> Update </v-btn>
     </v-card>
   </div>
 </template>
     
     <script>
+    import axios from 'axios';
 export default {
   name: "Recsettings",
+
+  data(){
+    return {
+      recruiter_password: "",
+      description: ""
+    }
+  },
+
+  methods: {
+    async savesetting()
+    {
+        let newuser = {
+          username: "",
+          newpassword: this.recruiter_password
+        }
+
+        const response = await axios.post("http://localhost:3000/recruiterpassword", newuser);
+        let resp = response.data;
+
+        console.log(resp)
+    },
+  },
+
 };
 </script>
     
