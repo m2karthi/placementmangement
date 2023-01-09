@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import portalLayout from '../layout/portalLayout.vue'
 import companyLayout from '../layout/cmpnyLayout.vue'
 import userLayout from '../layout/userLayout.vue'
+import authLayout from '../layout/authlayout.vue'
 
 
 
@@ -11,7 +12,9 @@ Vue.use(VueRouter)
 
 const routes = [
 
+
   //ADMIN ROUTES
+
   {
     path: "/",
     redirect: '/home',
@@ -26,6 +29,7 @@ const routes = [
         name: 'home',
         component: () => import('../views/Home.vue')
       },
+
       {
         path: 'drives',
         name: 'drives',
@@ -131,8 +135,42 @@ const routes = [
         component: () => import('../views/user/help.vue')
       },
 
+
+
     ],
   },
+  {
+    path: "/login",
+    redirect: '/auth',
+    component: authLayout,
+    meta: {
+      requiresAuth: true,
+      isAdmin: true
+    },
+    children: [
+      {
+        path: '/auth',
+        name: 'studentHome',
+        component: () => import('../views/auth/login.vue')
+      },
+
+
+
+
+    ],
+  },
+
+  // {
+  //   path: "/login",
+  //   component: authLayout,
+  //   children: [
+  //     {
+  //       path: '/auth',
+  //       name: 'login',
+  //       component: () => import('../views/auth/login.vue')
+  //     },
+  //   ],
+  // },
 ]
 
 const router = new VueRouter({

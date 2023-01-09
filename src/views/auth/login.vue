@@ -1,16 +1,18 @@
 <template>
+  <!-- <body> -->
   <div class="login-box">
     <h2>Login</h2>
+    <p v-if="err == true">{{ errorMsg }}</p>
     <form>
       <div class="user-box">
-        <input type="text" name="" required="" />
+        <input type="text" required v-model="email" />
         <label>Email adress/Username</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" required="" />
+        <input type="password" required v-model="password" />
         <label>Password</label>
       </div>
-      <a href="http://localhost:8080/home">
+      <a @click="submit">
         <span></span>
         <span></span>
         <span></span>
@@ -26,29 +28,44 @@
         </a> -->
     </form>
   </div>
+  <!-- </body> -->
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "loginForm",
-  // data() {
-  //     username= "d",
-  //     password= "f",
-  // }
+  data() {
+    return {
+      email: "",
+      password: "",
+      err: false,
+      errorMsg: "",
+    };
+  },
+  methods: {
+    async submit() {
+      const credentials = {
+        email: this.email,
+        password: this.password,
+      };
+      console.log("Login", credentials);
+      await axios
+        .post("http://localhost:3000/login", credentials)
+        .then((response) => {
+          console.log("User Loged in", response);
+        })
+        .catch((error) => {
+          this.errorMsg = error.msg;
+          this.err = true;
+          console.error("Error in logging in", error);
+        });
+    },
+  },
 };
 </script>
 
 <style scoped>
-html {
-  height: 100%;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: linear-gradient(#3b2abd, #3e5773);
-}
-
 .login-box {
   position: absolute;
   top: 50%;
