@@ -288,7 +288,24 @@ export default {
     async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
-        console.log("Error")
+        console.log("Updating...")
+
+        let userdata = {
+          username: this.editedItem.username,
+          name: this.editedItem.name,
+          gst: this.editedItem.gst,
+          drive: this.editedItem.drive,
+          email: this.editedItem.email,
+          lastDrive: this.editedItem.lastDrive,
+          status: this.editedItem.status
+        }
+
+        const response = await axios.post("http://localhost:3000/updatecompany", userdata);
+        let resp = response.data;
+
+        console.log(resp)
+
+
       } else {
         this.desserts.push(this.editedItem);
         const newUser = {

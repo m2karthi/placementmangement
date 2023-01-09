@@ -239,58 +239,58 @@ export default {
 
       this.desserts = resp.items
 
-      this.desserts = [
-        {
-          name: "Aadithya",
-          rollno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "On Progress",
-        },
-        {
-          name: "Logeshwaran",
-          rollno: "20435",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Pradeep",
-          rollno: "20447",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-        {
-          name: "Praveen",
-          rollno: "20449",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Frozen Yogurt",
-          rollno: "20403",
-          dob: "12/02/2003",
-          email: "Aadithya@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-      ];
+      // this.desserts = [
+      //   {
+      //     name: "Aadithya",
+      //     rollno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "On Progress",
+      //   },
+      //   {
+      //     name: "Logeshwaran",
+      //     rollno: "20435",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Pradeep",
+      //     rollno: "20447",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      //   {
+      //     name: "Praveen",
+      //     rollno: "20449",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     rollno: "20403",
+      //     dob: "12/02/2003",
+      //     email: "Aadithya@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      // ];
 
       console.log(
         "%cJSON StudentData: ",
@@ -317,8 +317,18 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
+    async deleteItemConfirm() {
       this.desserts.splice(this.editedIndex, 1);
+
+      let userdetail = {
+        rollno: this.editedItem.rollno
+      }
+
+      const response = await axios.post("http://localhost:3000/deletestudent", userdetail);
+      let resp = response.data;
+
+      console.log(resp);
+
       this.closeDelete();
     },
 
@@ -341,6 +351,23 @@ export default {
     async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
+
+        let userdata = {
+          name: this.editedItem.name,
+          rollno: this.editedItem.rollno,
+          dob: this.editedItem.dob,
+          email: this.editedItem.email,
+          mobile: this.editedItem.mobile,
+          cgpa: this.editedItem.cgpa,
+          course: this.editedItem.course,
+          status: this.editedItem.status
+        }
+
+        const response = await axios.post("http://localhost:3000/updatestudent", userdata);
+        let resp = response.data;
+
+        console.log(resp)
+
       } else {
         this.desserts.push(this.editedItem);
         const newUser = {

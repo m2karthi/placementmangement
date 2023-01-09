@@ -235,7 +235,7 @@
                 >
                 </v-textarea>
               </v-col>
-              <v-btn class="blue" @click="tab = 1">Save</v-btn>
+              <v-btn class="blue" @click="savedrive">Save</v-btn>
             </v-container>
           </v-card>
         </v-tab-item>
@@ -305,7 +305,6 @@ export default {
             .join("")}`;
         }),
       });
-
       this.input = null;
     },
   },
