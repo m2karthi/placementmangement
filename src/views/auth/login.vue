@@ -46,23 +46,14 @@ export default {
   methods: {
     async submit() {
       const credentials = {
-        email: this.email,
+        username: this.email,
         password: this.password,
       };
       console.log("Login ", credentials);
       await axios
         .post("http://localhost:3000/login", credentials)
         .then((response) => {
-          console.log("response", response.data);
-          //   const reqCode = response.data.reqcode;
-          //   console.log("Login reqCode", reqCode);
-          //   if (reqCode == 404) {
-          //     this.errorMsg = "Login failed ";
-          //     this.err = true;
-          //     console.error("Error in logging in");
-          //   } else {
-          //     console.log("User Loged in", response.data);
-          //   }
+          console.log("User Loged in", response.data);
         })
         .catch((error) => {
           this.errorMsg = error.message;

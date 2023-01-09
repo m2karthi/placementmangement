@@ -262,6 +262,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "addDrive",
   data() {
@@ -326,7 +327,7 @@ export default {
       this.input = null;
     },
 
-    savedrive() {
+    async savedrive() {
       const newdrive = {
         jobDesignation: this.jobDesignation,
         tenthPercentage: this.tenthPercentage,
@@ -340,7 +341,14 @@ export default {
         bondDetails: this.bondDetails,
         addReq: this.addReq,
         addDes: this.addDes,
+        company_name: ""
       };
+
+      const response = await axios.post("http://localhost:3000/adddrive", newdrive);
+      let resp = response.data;
+
+      console.log(resp)
+
       console.log("newdrive", newdrive);
 
       this.jobDesignation = null;
