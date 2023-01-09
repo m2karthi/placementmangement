@@ -2,7 +2,7 @@
   <!-- <body> -->
   <div class="login-box">
     <h2>Login</h2>
-    <p v-if="err == true">{{ errorMsg }}</p>
+    <p v-if="err == true" class="error">{{ errorMsg }}</p>
     <form>
       <div class="user-box">
         <input type="text" required v-model="email" />
@@ -49,14 +49,23 @@ export default {
         email: this.email,
         password: this.password,
       };
-      console.log("Login", credentials);
+      console.log("Login ", credentials);
       await axios
         .post("http://localhost:3000/login", credentials)
         .then((response) => {
-          console.log("User Loged in", response);
+          console.log("response", response.data);
+          //   const reqCode = response.data.reqcode;
+          //   console.log("Login reqCode", reqCode);
+          //   if (reqCode == 404) {
+          //     this.errorMsg = "Login failed ";
+          //     this.err = true;
+          //     console.error("Error in logging in");
+          //   } else {
+          //     console.log("User Loged in", response.data);
+          //   }
         })
         .catch((error) => {
-          this.errorMsg = error.msg;
+          this.errorMsg = error.message;
           this.err = true;
           console.error("Error in logging in", error);
         });
