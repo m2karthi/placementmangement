@@ -79,7 +79,7 @@
           src="../assets/profile-small.svg"
         />
         <div class="mr-3 ml-2">
-          <div class="black--text">Amazon</div>
+          <div class="black--text">{{ username }}</div>
           <div class="grey--text subtitle-2">Recruiter</div>
         </div>
         <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
@@ -137,6 +137,8 @@ export default {
   computed: {},
   methods: {
     async init() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
       this.getMenuItems();
     },
 
@@ -145,21 +147,21 @@ export default {
         {
           title: "Dashboard",
           icon: "fa-solid fa-house",
-          route: "/recruiter/dashboard",
+          route: "/recruiter/" + this.username + "/dashboard",
         },
         {
           title: "Drives",
-          route: "/recruiter/drives",
+          route: "/recruiter/" + this.username + "/drives",
           icon: "fa-solid fa-paperclip",
         },
         {
           title: "Students",
-          route: "/recruiter/students",
+          route: "/recruiter/" + this.username + "/students",
           icon: "fa-solid fa-graduation-cap",
         },
         {
           title: "Settings",
-          route: "/recruiter/settings",
+          route: "/recruiter/" + this.username + "/settings",
           icon: "fa-solid fa-gears",
         },
       ];
