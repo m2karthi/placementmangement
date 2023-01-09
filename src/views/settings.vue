@@ -40,7 +40,7 @@ export default {
     async savesetting()
     {
         let newuser = {
-          username: "",
+          username: this.$route.params.id,
           newpassword: this.admin_password
         }
 
