@@ -125,7 +125,7 @@ const routes = [
         component: () => import('../views/user/profile.vue')
       },
       {
-        path: '/student/singleDrive/:id',
+        path: '/student/:id/singleDrive/:driveId',
         name: 'singleDrive',
         component: () => import('../views/user/singleDrive.vue')
       },

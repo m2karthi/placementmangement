@@ -69,6 +69,7 @@
       <v-spacer></v-spacer>
       <v-menu
         v-model="menu"
+        open-on-hover
         :close-on-content-click="false"
         :nudge-width="200"
         offset-y
@@ -140,8 +141,9 @@
           </v-card-actions> -->
         </v-card>
       </v-menu>
-
-      <v-btn href="" text>
+      <!-- <v-menu bottom origin="center center" transition="scale-transition">
+        <template> -->
+      <!-- <v-btn href="" text>
         <v-img
           alt="Vuetify Logo"
           class="shrink"
@@ -153,7 +155,38 @@
           <div class="grey--text subtitle-2">Student</div>
         </div>
         <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
-      </v-btn>
+      </v-btn> -->
+      <!-- </template>
+
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu> -->
+      <v-menu offset-y class="error pa-0 ma-0">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" text dark v-bind="attrs" v-on="on">
+            <v-img
+              alt="Vuetify Logo"
+              class="shrink"
+              contain
+              src="../assets/profile-small.svg"
+            />
+            <div class="mr-3 ml-2">
+              <div class="black--text">{{ username }}</div>
+              <div class="grey--text subtitle-2">Student</div>
+            </div>
+            <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list class="error pa-0 ma-0">
+          <v-list-item @click="logout">
+            <v-icon class="mr-1" color="black">mdi-logout</v-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main class="pa-4">
@@ -204,6 +237,13 @@ export default {
       message: false,
       hints: true,
       username: null,
+
+      items: [
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me 2" },
+      ],
     };
   },
   created() {
@@ -254,7 +294,9 @@ export default {
         },
       ];
     },
-
+    logout() {
+      this.$router.push(`/login`);
+    },
     showHideNav() {
       if (this.drawer) {
         this.drawer = false;

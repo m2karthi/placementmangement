@@ -1,33 +1,31 @@
 <template>
   <div class="singleDrive">
     <v-card class="left ma-4">
-      <v-card-title class="jobRole text--centre"
-        >Software Developer</v-card-title
-      >
+      <v-card-title class="jobRole text--centre">{{
+        singleDrive.jobDesignation
+      }}</v-card-title>
       <p class="ml-4 mb-0 pa-0"><b>Job Description</b></p>
       <v-card-text>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-        sequi, accusamus eligendi ullam officia vel tempora voluptatibus
-        molestiae qui sunt eos nobis cumque eius voluptas aperiam, ipsam porro
-        quo maxime.
+        {{ singleDrive.jobDescription }}
       </v-card-text>
       <p class="ml-4 mb-0 pa-0"><b>Eligiblity</b></p>
       <v-card-text>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-        sequi, accusamus eligendi ullam officia vel tempora voluptatibus
-        molestiae qui sunt eos nobis cumque eius voluptas aperiam, ipsam porro
-        quo maxime.
+        Minimum CGPA- {{ singleDrive.mincgpa }} and above <br />
+        <!-- </v-card-text> -->
+        <!-- <v-card-text> Minimum CGPA- {{ singleDrive.mincgpa }} </v-card-text> -->
+        <!-- <v-card-text> -->
+        10th Percentage- {{ singleDrive.tenthPercentage }} and above<br />
+        <!-- </v-card-text> -->
+        <!-- <v-card-text> -->
+        12th Percentage- {{ singleDrive.twlethPercentage }} and above
       </v-card-text>
       <p class="ml-4 mb-0 pa-0"><b>Location</b></p>
+      <v-card-text> Bangalore, India </v-card-text>
+      <p class="ml-4 mb-0 pa-0"><b>Qualification</b></p>
       <v-card-text>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-      </v-card-text>
-      <p class="ml-4 mb-0 pa-0"><b>Qulaification</b></p>
-      <v-card-text>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-        sequi, accusamus eligendi ullam officia vel tempora voluptatibus
-        molestiae qui sunt eos nobis cumque eius voluptas aperiam, ipsam porro
-        quo maxime.
+        B.Tech <br />
+        The Application is open from {{ singleDrive.openingDate }} to
+        {{ singleDrive.closingDate }}
       </v-card-text>
     </v-card>
 
@@ -40,11 +38,13 @@
         </v-avatar>
         <!-- <v-img src="../../assets/amazon.svg" class=""></v-img> -->
       </div>
-      <v-card-title class="jobRole">Amazon</v-card-title>
+      <v-card-title class="jobRole">{{
+        singleDrive.company_name
+      }}</v-card-title>
       <p class="ml-4 mb-0 pa-0">Vision</p>
       <v-card-text
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ut
-        ratione, animi deleniti explicabo quas,
+        >Our vision is to be the premier provider of innovative and reliable IT
+        solutions for businesses and organizations around the world.
       </v-card-text>
       <p class="ml-4 mb-0 pa-0">Selection Process</p>
 
@@ -119,8 +119,29 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "singleDrive",
+  data() {
+    return {
+      singleDrive: null,
+      driveId: null,
+    };
+  },
+  created() {
+    console.log("Single Drive created");
+    this.driveId = this.$route.params.driveId;
+    console.log("driveId", this.driveId);
+    this.init();
+  },
+  methods: {
+    async init() {
+      const response = await axios.post("http://localhost:3000/getsingledrive");
+      let resp = response.data;
+      console.log(resp);
+      this.singleDrive = resp.items;
+    },
+  },
 };
 </script>
 

@@ -1,18 +1,23 @@
 <template>
   <div class="studentHome">
     <div class="cont">
-      <v-card v-for="card in cards" :key="card" class="my-6" width="350">
+      <v-card
+        v-for="drive in allDrives"
+        :key="drive.company_name"
+        class="my-6"
+        width="350"
+      >
         <v-img
           class="white--text align-end"
           height="200px"
           src="../../assets/amazon.svg"
         >
-          <v-card-title>Amazon</v-card-title>
+          <v-card-title>{{ drive.name }}</v-card-title>
         </v-img>
 
         <v-card-text class="text--primary">
-          <h3>Software Developer</h3>
-          <div>Job Description</div>
+          <h3>{{ drive.designation }}</h3>
+          <div>{{ description }}</div>
           <!-- <div>Eligibility CGPA above of 8.0</div> -->
         </v-card-text>
         <v-card-subtitle class="pt-2"> Internship </v-card-subtitle>
@@ -20,7 +25,9 @@
         <v-card-actions>
           <v-btn color="orange" @click="applyItem" text> Apply Now </v-btn>
 
-          <v-btn color="orange" @click="explore" text> Explore </v-btn>
+          <v-btn color="orange" @click="explore(drive.name)" text>
+            Explore
+          </v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -60,6 +67,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "studentHome",
   data() {
@@ -70,14 +78,24 @@ export default {
       text: "My timeout is set to 2000.",
       timeout: 2000,
       username: "",
+      allDrives: [],
     };
   },
   created() {
+    console.log("StudentHome created");
     this.username = this.$route.params.id;
     console.log("username", this.username);
+    this.init();
   },
 
   methods: {
+    async init() {
+      // Get all drive
+      const response = await axios.post("http://localhost:3000/gethomedrive");
+      let resp = response.data;
+      console.log(resp);
+      this.allDrives = resp.items;
+    },
     applyItem() {
       this.applyDialog = true;
     },
@@ -91,9 +109,9 @@ export default {
     closeApplyItem() {
       this.applyDialog = false;
     },
-    explore() {
+    explore(cmpnyName) {
       console.log("explore");
-      this.$router.push(`/student/singleDrive/${this.username}`);
+      this.$router.push(`/student/${this.username}/singleDrive/${cmpnyName}`);
     },
   },
 };
