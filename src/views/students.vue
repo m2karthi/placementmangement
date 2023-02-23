@@ -58,7 +58,7 @@
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           required
-                          v-model="editedItem.roleno"
+                          v-model="editedItem.rollno"
                           label="Role No"
                         ></v-text-field>
                       </v-col>
@@ -154,6 +154,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: "students",
@@ -175,7 +176,7 @@ export default {
         value: "name",
       },
 
-      { text: "RollNo", value: "roleno" },
+      { text: "RollNo", value: "rollno" },
       { text: "DOB", value: "dob" },
       { text: "Email", value: "email" },
       { text: "Mobile (+91)", value: "mobile" },
@@ -189,7 +190,7 @@ export default {
     editedIndex: -1,
     editedItem: {
       name: "",
-      roleno: "",
+      rollno: "",
       dob: "",
       email: "",
       mobile: null,
@@ -199,7 +200,7 @@ export default {
     },
     defaultItem: {
       name: "",
-      roleno: "",
+      rollno: "",
       dob: "",
       email: "",
       mobile: null,
@@ -229,59 +230,67 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Aadithya",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "On Progress",
-        },
-        {
-          name: "Logeshwaran",
-          roleno: "20435",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Pradeep",
-          roleno: "20447",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-        {
-          name: "Praveen",
-          roleno: "20449",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Frozen Yogurt",
-          roleno: "20403",
-          dob: "12/02/2003",
-          email: "Aadithya@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-      ];
+    async initialize() {
+
+      const response = await axios.post("http://44.200.57.40:3000/getstudent",{});
+      let resp = response.data;
+
+      console.log(resp)
+
+      this.desserts = resp.items
+
+      // this.desserts = [
+      //   {
+      //     name: "Aadithya",
+      //     rollno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "On Progress",
+      //   },
+      //   {
+      //     name: "Logeshwaran",
+      //     rollno: "20435",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Pradeep",
+      //     rollno: "20447",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      //   {
+      //     name: "Praveen",
+      //     rollno: "20449",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     rollno: "20403",
+      //     dob: "12/02/2003",
+      //     email: "Aadithya@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      // ];
 
       console.log(
         "%cJSON StudentData: ",
@@ -308,8 +317,18 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
+    async deleteItemConfirm() {
       this.desserts.splice(this.editedIndex, 1);
+
+      let userdetail = {
+        rollno: this.editedItem.rollno
+      }
+
+      const response = await axios.post("http://44.200.57.40:3000/deletestudent", userdetail);
+      let resp = response.data;
+
+      console.log(resp);
+
       this.closeDelete();
     },
 
@@ -329,11 +348,54 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
+
+        let userdata = {
+          name: this.editedItem.name,
+          rollno: this.editedItem.rollno,
+          dob: this.editedItem.dob,
+          email: this.editedItem.email,
+          mobile: this.editedItem.mobile,
+          cgpa: this.editedItem.cgpa,
+          course: this.editedItem.course,
+          status: this.editedItem.status
+        }
+
+        const response = await axios.post("http://44.200.57.40:3000/updatestudent", userdata);
+        let resp = response.data;
+
+        console.log(resp)
+
       } else {
         this.desserts.push(this.editedItem);
+        const newUser = {
+          rollno: this.editedItem.rollno,
+          name: this.editedItem.name,
+          dob: this.editedItem.dob,
+          email: this.editedItem.email,
+          mobile: this.editedItem.mobile,
+          cgpa: this.editedItem.cgpa,
+          course: this.editedItem.course,
+          status: this.editedItem.status,
+        };
+
+        console.log("newuser", newUser);
+        // await axios
+        //   .post("http://44.200.57.40:3000/addstudent", newUser)
+        //   .then(function (response) {
+        //     console.log("response after adding student", response);
+        //   })
+        //   .catch(function (error) {
+        //     console.log("error in adding student", error);
+        //   });
+
+        const response = await axios.post("http://44.200.57.40:3000/addstudent", newUser);
+        let resp = response.data;
+
+        console.log(resp)
+
       }
       this.close();
     },

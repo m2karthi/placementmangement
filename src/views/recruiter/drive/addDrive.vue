@@ -34,21 +34,34 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       label="Job Designation"
+                      v-model="jobDesignation"
                       prepend-icon="mdi-briefcase"
                     >
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-file-input
-                      show-size
-                      counter
-                      multiple
-                      label="Upload Job Pdf"
-                    ></v-file-input>
+                    <v-text-field
+                      label="Opening Date"
+                      v-model="openingDate"
+                      prepend-icon="mdi-briefcase"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Closing Date"
+                      v-model="closingDate"
+                      prepend-icon="mdi-briefcase"
+                    >
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-textarea label="Job Description" prepend-icon="mdi-mail">
+                  <v-textarea
+                    label="Job Description"
+                    prepend-icon="mdi-mail"
+                    v-model="jobDescription"
+                  >
                   </v-textarea>
                 </v-col>
                 <v-btn class="blue" @click="tab = 1">Save and Next</v-btn>
@@ -62,7 +75,7 @@
               <v-row>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
-                    v-model="tenth"
+                    v-model="tenthPercentage"
                     label="Percentage X"
                     prepend-icon="mdi-percent"
                   >
@@ -70,7 +83,7 @@
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
-                    v-model="twleth"
+                    v-model="twlethPercentage"
                     label="Percentage XII"
                     prepend-icon="mdi-percent"
                   >
@@ -87,6 +100,7 @@
                     multiple
                     small-chips
                     dense
+                    v-model="course"
                     :items="programme"
                     label="Programme"
                     prepend-icon="mdi-eyedropper-variant"
@@ -101,6 +115,7 @@
                     multiple
                     small-chips
                     dense
+                    v-model="deptSelected"
                     :items="Dept"
                     label="Department"
                     prepend-icon="mdi-shape"
@@ -125,7 +140,11 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field label="Salary Pacakage" prepend-icon="mdi-cash">
+                  <v-text-field
+                    label="Salary Pacakage"
+                    prepend-icon="mdi-cash"
+                    v-model="salary"
+                  >
                   </v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
@@ -138,7 +157,11 @@
                 </v-col>
               </v-row>
               <v-col cols="12" sm="6" md="4">
-                <v-textarea label="Bond Details" prepend-icon="mdi-mail">
+                <v-textarea
+                  label="Bond Details"
+                  prepend-icon="mdi-mail"
+                  v-model="bondDetails"
+                >
                 </v-textarea>
               </v-col>
               <v-btn class="blue" @click="tab = 3">Save and Next</v-btn>
@@ -215,6 +238,7 @@
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
                     label="Additional Requirement Title"
+                    v-model="addReq"
                     prepend-icon="mdi-briefcase"
                   >
                   </v-text-field>
@@ -231,11 +255,12 @@
               <v-col cols="12" sm="6" md="4">
                 <v-textarea
                   label="Additional Requirement Description"
+                  v-model="addDes"
                   prepend-icon="mdi-mail"
                 >
                 </v-textarea>
               </v-col>
-              <v-btn class="blue" @click="tab = 1">Save</v-btn>
+              <v-btn class="blue" @click="savedrive">Save</v-btn>
             </v-container>
           </v-card>
         </v-tab-item>
@@ -245,6 +270,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "addDrive",
   data() {
@@ -264,6 +290,20 @@ export default {
         "HR Round-1",
         "HR Round-2",
       ],
+      jobDesignation: null,
+      tenthPercentage: null,
+      jobDescription: null,
+      twlethPercentage: null,
+      course: null,
+      closingDate: null,
+      openingDate: null,
+      deptSelected: null,
+      mincgpa: null,
+      salary: null,
+      bondDetails: null,
+      addReq: null,
+      addDes: null,
+
       messages: [
         {
           from: "You",
@@ -305,8 +345,52 @@ export default {
             .join("")}`;
         }),
       });
-
       this.input = null;
+    },
+
+    async savedrive() {
+      const newdrive = {
+        jobDesignation: this.jobDesignation,
+        tenthPercentage: this.tenthPercentage,
+        jobDescription: this.jobDescription,
+        twlethPercentage: this.twlethPercentage,
+        course: this.course,
+        closingDate: this.closingDate,
+        openingDate: this.openingDate,
+        deptSelected: this.deptSelected,
+        mincgpa: this.mincgpa,
+        events: this.events,
+        salary: this.salary,
+        bondDetails: this.bondDetails,
+        addReq: this.addReq,
+        addDes: this.addDes,
+        company_name: this.$route.params.id,
+        _id: this.$route.params.id,
+      };
+
+      console.log("newdrive", newdrive);
+      const response = await axios.post(
+        "http://localhost:3000/adddrive",
+        newdrive
+      );
+      let resp = response.data;
+
+      console.log(resp);
+
+      this.jobDesignation = null;
+      this.tenthPercentage = null;
+      this.jobDescription = null;
+      this.twlethPercentage = null;
+      this.course = null;
+      this.events = null;
+      this.deptSelected = null;
+      this.mincgpa = null;
+      this.salary = null;
+      this.bondDetails = null;
+      this.addReq = null;
+      this.addDes = null;
+
+      window.alert("New Drive Has been Added!!!")
     },
   },
 };

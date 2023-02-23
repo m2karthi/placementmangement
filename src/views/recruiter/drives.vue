@@ -3,7 +3,7 @@
     <div class="title d-flex">
       <h3>Drives</h3>
       <v-spacer></v-spacer>
-      <v-btn color="primary" to="/recruiter/drives/addnew" class="white--text">
+      <v-btn color="primary" @click="pushroute" class="white--text">
         <v-icon>mdi-plus</v-icon>
         New Drive
       </v-btn>
@@ -38,7 +38,8 @@
   </div>
 </template>
     
-    <script>
+<script>
+    import axios from 'axios';
 export default {
   name: "recDrives",
   data: () => ({
@@ -68,6 +69,7 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
+    username: "",
     statuses: ["Placed", "Not Placed", "On Progress"],
     editedIndex: -1,
     editedItem: {
@@ -112,41 +114,53 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Amazon",
-          open: "12/11/2022",
-          close: "15/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Active",
-        },
-        {
-          name: "Webilicious",
-          open: "10/11/2022",
-          close: "14/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Closing Soon",
-        },
-        {
-          name: "Microsoft",
-          open: "10/11/2022",
-          close: "12/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Closed",
-        },
-      ];
-    },
+    async initialize() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
 
+      const response = await axios.post("http://44.200.57.40:3000/getdrive",{});
+      let resp = response.data;
+
+      console.log(resp)
+
+      this.desserts = resp.items
+
+      // this.desserts = [
+      //   {
+      //     name: "Amazon",
+      //     open: "12/11/2022",
+      //     close: "15/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Active",
+      //   },
+      //   {
+      //     name: "Webilicious",
+      //     open: "10/11/2022",
+      //     close: "14/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Closing Soon",
+      //   },
+      //   {
+      //     name: "Microsoft",
+      //     open: "10/11/2022",
+      //     close: "12/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Closed",
+      //   },
+      // ];
+    },
+    pushroute() {
+      this.$router.push(`/recruiter/${this.username}/drives/addnew/`);
+    },
     getColor(status) {
       if (status == "Closed") return "red";
       else if (status == "Closing Soon") return "orange";

@@ -7,7 +7,7 @@
         <v-text-field
           filled
           solo
-          v-model="subject"
+          v-model="admin_password"
           label="Admin Password"
         ></v-text-field>
       </v-col>
@@ -19,14 +19,40 @@
           label="Remarks"
         ></v-textarea>
       </v-col>
-      <v-btn class="primary pa-2 ma-2"> Update </v-btn>
+      <v-btn class="primary pa-2 ma-2" @click="savesetting"> Update </v-btn>
     </v-card>
   </div>
 </template>
   
-  <script>
+  <script lang="js">
+  import axios from 'axios';
 export default {
   name: "settings",
+
+  data(){
+    return {
+      admin_password: "",
+      description: ""
+    }
+  },
+
+  methods: {
+    async savesetting()
+    {
+        let newuser = {
+          username: this.$route.params.id,
+          newpassword: this.admin_password
+        }
+
+        const response = await axios.post("http://44.200.57.40:3000/adminpassword", newuser);
+        let resp = response.data;
+
+        console.log(resp)
+
+        window.alert("Your Password has been updated!!!")
+    },
+  },
+
 };
 </script>
   

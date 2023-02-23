@@ -71,19 +71,33 @@
         <v-icon color="white">mdi-bell-badge-outline</v-icon>
       </v-btn>
 
-      <v-btn href="" text>
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink"
-          contain
-          src="../assets/profile-small.svg"
-        />
-        <div class="mr-3 ml-2">
-          <div class="black--text">Amazon</div>
-          <div class="grey--text subtitle-2">Recruiter</div>
-        </div>
-        <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
-      </v-btn>
+      <v-menu offset-y class="error pa-0 ma-0">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" text dark v-bind="attrs" v-on="on">
+            <v-img
+              alt="Vuetify Logo"
+              class="shrink"
+              contain
+              src="../assets/profile-small.svg"
+            />
+            <div class="mr-3 ml-2">
+              <div class="black--text">{{ username }}</div>
+              <div class="grey--text subtitle-2">Recruiter</div>
+            </div>
+            <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list class="error pa-0 ma-0">
+          <v-list-item @click="logout">
+            <v-icon class="mr-1" color="black">mdi-logout</v-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <!-- <v-btn href="" text>
+       
+      </v-btn> -->
     </v-app-bar>
 
     <v-main class="pa-4">
@@ -137,6 +151,8 @@ export default {
   computed: {},
   methods: {
     async init() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
       this.getMenuItems();
     },
 
@@ -145,21 +161,21 @@ export default {
         {
           title: "Dashboard",
           icon: "fa-solid fa-house",
-          route: "/recruiter/dashboard",
+          route: "/recruiter/" + this.username + "/dashboard",
         },
         {
           title: "Drives",
-          route: "/recruiter/drives",
+          route: "/recruiter/" + this.username + "/drives",
           icon: "fa-solid fa-paperclip",
         },
         {
           title: "Students",
-          route: "/recruiter/students",
+          route: "/recruiter/" + this.username + "/students",
           icon: "fa-solid fa-graduation-cap",
         },
         {
           title: "Settings",
-          route: "/recruiter/settings",
+          route: "/recruiter/" + this.username + "/settings",
           icon: "fa-solid fa-gears",
         },
       ];
@@ -177,7 +193,9 @@ export default {
         },
       ];
     },
-
+    logout() {
+      this.$router.push(`/login`);
+    },
     showHideNav() {
       if (this.drawer) {
         this.drawer = false;

@@ -69,6 +69,7 @@
       <v-spacer></v-spacer>
       <v-menu
         v-model="menu"
+        open-on-hover
         :close-on-content-click="false"
         :nudge-width="200"
         offset-y
@@ -92,7 +93,7 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Pradeep</v-list-item-title>
+                <v-list-item-title>{{ username }}</v-list-item-title>
                 <v-list-item-subtitle
                   >You have a new notification</v-list-item-subtitle
                 >
@@ -140,8 +141,9 @@
           </v-card-actions> -->
         </v-card>
       </v-menu>
-
-      <v-btn href="" text>
+      <!-- <v-menu bottom origin="center center" transition="scale-transition">
+        <template> -->
+      <!-- <v-btn href="" text>
         <v-img
           alt="Vuetify Logo"
           class="shrink"
@@ -149,11 +151,42 @@
           src="../assets/profile-small.svg"
         />
         <div class="mr-3 ml-2">
-          <div class="black--text">Pradeep</div>
+          <div class="black--text">{{ username }}</div>
           <div class="grey--text subtitle-2">Student</div>
         </div>
         <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
-      </v-btn>
+      </v-btn> -->
+      <!-- </template>
+
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu> -->
+      <v-menu offset-y class="error pa-0 ma-0">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" text dark v-bind="attrs" v-on="on">
+            <v-img
+              alt="Vuetify Logo"
+              class="shrink"
+              contain
+              src="../assets/profile-small.svg"
+            />
+            <div class="mr-3 ml-2">
+              <div class="black--text">{{ username }}</div>
+              <div class="grey--text subtitle-2">Student</div>
+            </div>
+            <v-icon class="ml-1" color="black">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list class="error pa-0 ma-0">
+          <v-list-item @click="logout">
+            <v-icon class="mr-1" color="black">mdi-logout</v-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main class="pa-4">
@@ -203,6 +236,14 @@ export default {
       menu: false,
       message: false,
       hints: true,
+      username: null,
+
+      items: [
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me 2" },
+      ],
     };
   },
   created() {
@@ -211,6 +252,8 @@ export default {
   computed: {},
   methods: {
     async init() {
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
       this.getMenuItems();
     },
 
@@ -219,21 +262,21 @@ export default {
         {
           title: "Home",
           icon: "fa-solid fa-house",
-          route: "/student/dashboard",
+          route: "/student/dashboard/" + this.username,
         },
         {
           title: "Job Applicatons",
-          route: "/student/drives",
+          route: "/student/drives/" + this.username,
           icon: "fa-solid fa-paperclip",
         },
         {
           title: "Profile",
-          route: "/student/user",
+          route: "/student/user/" + this.username,
           icon: "fa-solid fa-graduation-cap",
         },
         {
           title: "Help",
-          route: "/student/help",
+          route: "/student/help/" + this.username,
           icon: "mdi-help-network",
         },
       ];
@@ -251,7 +294,9 @@ export default {
         },
       ];
     },
-
+    logout() {
+      this.$router.push(`/login`);
+    },
     showHideNav() {
       if (this.drawer) {
         this.drawer = false;

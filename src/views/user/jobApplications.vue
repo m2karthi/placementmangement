@@ -31,10 +31,10 @@
   </div>
 </template>
   
-  <script>
+<script lang="js">
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from 'axios';
 export default {
   name: "studentDrives",
   data: () => ({
@@ -108,39 +108,55 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Amazon",
-          open: "12/11/2022",
-          close: "15/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Applied",
-        },
-        {
-          name: "Webilicious",
-          open: "10/11/2022",
-          close: "14/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Continue",
-        },
-        {
-          name: "Microsoft",
-          open: "10/11/2022",
-          close: "12/11/2022",
-          designation: "Software Developer",
-          regStud: 180,
-          cgpa: 9.3,
-          course: "B.Tech",
-          status: "Closed",
-        },
-      ];
+    async initialize() {
+
+      this.username = this.$route.params.id;
+      console.log("username", this.username);
+
+      const response = await axios.post("http://44.200.57.40:3000/getdrive",{});
+      let resp = response.data;
+
+      console.log(resp)
+
+      this.desserts = resp.items
+
+      for(let i=0;i<this.desserts.length;i++)
+      {
+        this.desserts[i].status = "Applied"
+      }
+
+      // this.desserts = [
+      //   {
+      //     name: "Amazon",
+      //     open: "12/11/2022",
+      //     close: "15/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Applied",
+      //   },
+      //   {
+      //     name: "Webilicious",
+      //     open: "10/11/2022",
+      //     close: "14/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Continue",
+      //   },
+      //   {
+      //     name: "Microsoft",
+      //     open: "10/11/2022",
+      //     close: "12/11/2022",
+      //     designation: "Software Developer",
+      //     regStud: 180,
+      //     cgpa: 9.3,
+      //     course: "B.Tech",
+      //     status: "Closed",
+      //   },
+      // ];
     },
 
     getColor(status) {

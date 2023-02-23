@@ -71,19 +71,33 @@
         <v-icon color="red">mdi-bell-badge-outline</v-icon>
       </v-btn>
 
-      <v-btn href="" text>
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink red"
-          contain
-          src="../assets/profile-small.svg"
-        />
-        <div class="mr-3 ml-2">
-          <div class="red--text">CIR</div>
-          <div class="grey--text subtitle-2">Admin</div>
-        </div>
-        <v-icon class="ml-1" color="red">mdi-chevron-down</v-icon>
-      </v-btn>
+      <v-menu offset-y class="error pa-0 ma-0">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" text dark v-bind="attrs" v-on="on">
+            <v-img
+              alt="Vuetify Logo"
+              class="shrink red"
+              contain
+              src="../assets/profile-small.svg"
+            />
+            <div class="mr-3 ml-2">
+              <div class="red--text">CIR</div>
+              <div class="grey--text subtitle-2">Admin</div>
+            </div>
+            <v-icon class="ml-1" color="red">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list class="error pa-0 ma-0">
+          <v-list-item @click="logout">
+            <v-icon class="mr-1" color="black">mdi-logout</v-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <!-- <v-btn href="" text>
+       
+      </v-btn> -->
     </v-app-bar>
 
     <v-main class="pa-4">
@@ -182,6 +196,9 @@ export default {
       ];
     },
 
+    logout() {
+      this.$router.push(`/login`);
+    },
     showHideNav() {
       if (this.drawer) {
         this.drawer = false;

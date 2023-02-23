@@ -133,6 +133,7 @@
   <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: "regStudents",
@@ -207,59 +208,67 @@ export default {
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          name: "Frozen Yogurt",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "On Progress",
-        },
-        {
-          name: "Frozen Yogurt",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Frozen Yogurt",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-        {
-          name: "Frozen Yogurt",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Placed",
-        },
-        {
-          name: "Frozen Yogurt",
-          roleno: "20444",
-          dob: "12/02/2003",
-          email: "qwerty@gmail.com",
-          mobile: 999475214,
-          cgpa: 8.6,
-          course: "B.tech",
-          status: "Not Placed",
-        },
-      ];
+    async initialize() {
+
+      const response = await axios.post("http://44.200.57.40:3000/getstudent",{});
+      let resp = response.data;
+
+      console.log(resp)
+
+      this.desserts = resp.items
+
+      // this.desserts = [
+      //   {
+      //     name: "Frozen Yogurt",
+      //     roleno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "On Progress",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     roleno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     roleno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     roleno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Placed",
+      //   },
+      //   {
+      //     name: "Frozen Yogurt",
+      //     roleno: "20444",
+      //     dob: "12/02/2003",
+      //     email: "qwerty@gmail.com",
+      //     mobile: 999475214,
+      //     cgpa: 8.6,
+      //     course: "B.tech",
+      //     status: "Not Placed",
+      //   },
+      // ];
     },
 
     getColor(status) {
@@ -280,8 +289,17 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
+    async deleteItemConfirm() {
       this.desserts.splice(this.editedIndex, 1);
+
+      let userdetail = {
+        rollno: this.editedItem.rollno
+      }
+      const response = await axios.post("http://44.200.57.40:3000/deletestudent", userdetail);
+      let resp = response.data;
+
+      console.log(resp);
+
       this.closeDelete();
     },
 
@@ -301,9 +319,26 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
+
+        let userdata = {
+          name: this.editedItem.name,
+          rollno: this.editedItem.rollno,
+          dob: this.editedItem.dob,
+          email: this.editedItem.email,
+          mobile: this.editedItem.mobile,
+          cgpa: this.editedItem.cgpa,
+          course: this.editedItem.course,
+          status: this.editedItem.status
+        } 
+
+        const response = await axios.post("http://44.200.57.40:3000/updatestudent", userdata);
+        let resp = response.data;
+
+        console.log(resp)
+
       } else {
         this.desserts.push(this.editedItem);
       }

@@ -64,7 +64,7 @@
                 dense
                 outlined
                 clearable
-                v-model="accountnumber"
+                v-model="altMobile"
                 color="primary"
                 label="Alternate Mobile"
               >
@@ -95,7 +95,7 @@
                 dense
                 outlined
                 clearable
-                v-model="city"
+                v-model="address"
                 color="primary"
                 label="Address"
               >
@@ -121,21 +121,20 @@
                 label="CGPA"
               >
               </v-text-field>
-              <v-autocomplete
-                dense
-                outlined
-                clearable
-                :items="paytypeList"
-                v-model="paytype"
-                color="primary"
-                label="10th %"
-              >
-              </v-autocomplete>
               <v-text-field
                 dense
                 outlined
                 clearable
-                v-model="payrate"
+                v-model="tenth"
+                color="primary"
+                label="10th %"
+              >
+              </v-text-field>
+              <v-text-field
+                dense
+                outlined
+                clearable
+                v-model="twleth"
                 color="primary"
                 label="12th %"
               >
@@ -154,7 +153,7 @@
                 dense
                 outlined
                 clearable
-                v-model="overrate"
+                v-model="aoi"
                 color="primary"
                 label="Areas Of Interest"
               >
@@ -178,8 +177,8 @@
   </div>
 </template>
     
-    <script>
-// import axios from "axios";
+<script lang="js">
+import axios from "axios";
 export default {
   name: "studentProfile",
   data() {
@@ -189,24 +188,51 @@ export default {
       paytypeList: ["NEFT", "RTGS", "Net Banking"],
       statuslist: ["Active", "On Leave", "On Duty"],
 
-      employee_name: "",
-      emp_password: "",
-      gender: "",
-      email: "",
+      name: null,
+      gender: "Male",
+      email: null,
       mobile: null,
-      designation: "",
+      altMobile: 9874563214,
       dob: null,
-      city: "",
-      remarks: "",
-      cgpa: "",
-      paytype: "",
-      overrate: null,
-      payrate: null,
-      accountnumber: null,
-      empstatus: "",
+      address: "Coimbatore",
+      remarks: "Great!",
+      cgpa: null,
+      tenth: null,
+      twleth: null,
+      designation: null,
+      aoi: "Cloud Computing",
     };
   },
+  created() {
+    this.init();
+  },
   methods: {
+    async init() {
+      console.log("Hey Init profile");
+      const username = this.$route.params.id;
+      console.log("Hey Init profile", username);
+
+      const response = await axios.post(
+        "http://44.200.57.40:3000/getsinglestudent",
+        { username: username }
+      );
+      let resp = response.data;
+
+      console.log("resp", resp);
+      this.name = resp.items.name;
+      this.gender = "Male";
+      this.email = resp.items.email;
+      this.mobile = resp.items.mobile;
+      this.altMobile = 9874563214;
+      this.dob = resp.items.dob;
+      this.address = "Coimbatore";
+      this.remarks = "Great!";
+      this.cgpa = resp.items.cgpa;
+      this.tenth = "75%";
+      this.twleth = "80%";
+      this.designation = "Software Developer";
+      this.aoi = "Cloud Computing";
+    },
     async addDetails() {
       console.log("add details");
       const empDetails = {
@@ -229,7 +255,7 @@ export default {
 
       console.log("EmpDetails", empDetails);
       //   await axios
-      //     .post("http://localhost:3000/employees", empDetails)
+      //     .post("http://44.200.57.40:3000/employees", empDetails)
       //     .then((response) => {
       //       console.log("response", response);
       //     })
