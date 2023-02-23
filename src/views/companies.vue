@@ -192,7 +192,7 @@ export default {
   methods: {
     async initialize() {
 
-      const response = await axios.post("http://localhost:3000/getrecruiter",{});
+      const response = await axios.post("http://44.200.57.40:3000/getrecruiter",{});
       let resp = response.data;
 
 
@@ -261,7 +261,7 @@ export default {
         username: this.editedItem.username
       }
 
-      const response = await axios.post("http://localhost:3000/deletecompany", userdetail);
+      const response = await axios.post("http://44.200.57.40:3000/deletecompany", userdetail);
       let resp = response.data;
 
       console.log(resp);
@@ -300,7 +300,7 @@ export default {
           status: this.editedItem.status
         }
 
-        const response = await axios.post("http://localhost:3000/updatecompany", userdata);
+        const response = await axios.post("http://44.200.57.40:3000/updatecompany", userdata);
         let resp = response.data;
 
         console.log(resp)
@@ -320,7 +320,7 @@ export default {
 
         console.log("newuser", newUser);
 
-        const response = await axios.post("http://localhost:3000/addrecruiter", newUser);
+        const response = await axios.post("http://44.200.57.40:3000/addrecruiter", newUser);
         let resp = response.data;
 
         console.log(resp)

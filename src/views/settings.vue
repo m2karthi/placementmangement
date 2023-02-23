@@ -24,7 +24,7 @@
   </div>
 </template>
   
-  <script>
+  <script lang="js">
   import axios from 'axios';
 export default {
   name: "settings",
@@ -44,7 +44,7 @@ export default {
           newpassword: this.admin_password
         }
 
-        const response = await axios.post("http://localhost:3000/adminpassword", newuser);
+        const response = await axios.post("http://44.200.57.40:3000/adminpassword", newuser);
         let resp = response.data;
 
         console.log(resp)

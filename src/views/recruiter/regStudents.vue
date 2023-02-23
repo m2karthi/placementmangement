@@ -210,7 +210,7 @@ export default {
   methods: {
     async initialize() {
 
-      const response = await axios.post("http://localhost:3000/getstudent",{});
+      const response = await axios.post("http://44.200.57.40:3000/getstudent",{});
       let resp = response.data;
 
       console.log(resp)
@@ -295,8 +295,7 @@ export default {
       let userdetail = {
         rollno: this.editedItem.rollno
       }
-
-      const response = await axios.post("http://localhost:3000/deletestudent", userdetail);
+      const response = await axios.post("http://44.200.57.40:3000/deletestudent", userdetail);
       let resp = response.data;
 
       console.log(resp);
@@ -335,7 +334,7 @@ export default {
           status: this.editedItem.status
         } 
 
-        const response = await axios.post("http://localhost:3000/updatestudent", userdata);
+        const response = await axios.post("http://44.200.57.40:3000/updatestudent", userdata);
         let resp = response.data;
 
         console.log(resp)

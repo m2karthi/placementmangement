@@ -38,7 +38,7 @@
   </div>
 </template>
     
-    <script>
+<script>
     import axios from 'axios';
 export default {
   name: "recDrives",
@@ -118,7 +118,7 @@ export default {
       this.username = this.$route.params.id;
       console.log("username", this.username);
 
-      const response = await axios.post("http://localhost:3000/getdrive",{});
+      const response = await axios.post("http://44.200.57.40:3000/getdrive",{});
       let resp = response.data;
 
       console.log(resp)

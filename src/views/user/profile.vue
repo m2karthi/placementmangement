@@ -177,7 +177,7 @@
   </div>
 </template>
     
-    <script>
+<script lang="js">
 import axios from "axios";
 export default {
   name: "studentProfile",
@@ -213,7 +213,7 @@ export default {
       console.log("Hey Init profile", username);
 
       const response = await axios.post(
-        "http://localhost:3000/getsinglestudent",
+        "http://44.200.57.40:3000/getsinglestudent",
         { username: username }
       );
       let resp = response.data;
@@ -255,7 +255,7 @@ export default {
 
       console.log("EmpDetails", empDetails);
       //   await axios
-      //     .post("http://localhost:3000/employees", empDetails)
+      //     .post("http://44.200.57.40:3000/employees", empDetails)
       //     .then((response) => {
       //       console.log("response", response);
       //     })

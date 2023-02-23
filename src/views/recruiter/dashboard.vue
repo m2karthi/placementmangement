@@ -121,7 +121,7 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 // import ApexCharts from "apexcharts";
 export default {
   name: "home",

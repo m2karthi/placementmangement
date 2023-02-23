@@ -51,7 +51,7 @@ export default {
       };
       console.log("Login ", credentials);
       await axios
-        .post("http://localhost:3000/login", credentials)
+        .post("http://44.200.57.40:3000/login", credentials)
         .then((response) => {
           console.log("User Loged in", response.data);
           if (response.data.reqcode == 404) {

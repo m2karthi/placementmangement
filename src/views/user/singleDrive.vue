@@ -118,7 +118,7 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 import axios from "axios";
 export default {
   name: "singleDrive",
@@ -136,7 +136,7 @@ export default {
   },
   methods: {
     async init() {
-      const response = await axios.post("http://localhost:3000/getsingledrive");
+      const response = await axios.post("http://44.200.57.40:3000/getsingledrive");
       let resp = response.data;
       console.log(resp);
       this.singleDrive = resp.items;
