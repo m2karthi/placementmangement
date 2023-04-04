@@ -11,7 +11,7 @@
                 solo
                 clearable
                 required
-                type="email"
+                
               ></v-text-field>
               <v-text-field
                 v-model="repo"
@@ -63,6 +63,7 @@ export default {
             repo: "",
             items: ["C++", "Java", "Javascript", "Python", "DBMS", "Solidity", "Rust"],
             projets: null,
+            username: null,
 
         }
     },
