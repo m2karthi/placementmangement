@@ -6,8 +6,8 @@
     <v-card width="550px" class="   ">
         <v-form @submit.prevent="sendData">
              <v-text-field
-                v-model="email"
-                label="Email"
+                v-model="username"
+                label="UserName"
                 solo
                 clearable
                 required
@@ -16,7 +16,7 @@
               <v-text-field
                 v-model="repo"
                 solo
-                label="GitHub repo link"
+                label="GitHub repo name"
                 required
                 clearable
               ></v-text-field>
@@ -32,13 +32,13 @@
                 lable="Select Skills"
                 required
                 ></v-autocomplete>
-                <v-text-field
+                <!-- <v-text-field
                 v-model="projets"
                 solo
                 label="Your Projects"
                 required
-                clearable
-              ></v-text-field>
+                clearable -->
+              <!-- </v-text-field> -->
                  <v-btn
                           color="warning"
                           dark
@@ -69,16 +69,44 @@ export default {
     methods: {
         sendData(){
             var data = {
-                email: this.email,
+                username: this.username,
                 repo: this.repo,
                 skills: this.skills
             }
             console.log("Sending data", data)
-            axios.get('//home/repo', data).then((res)=>{
-                console.log("Sending data", res
-                
-                )
+
+            axios.get("https://api.github.com/repos/"+this.username+"/"+this.repo+"/"+"languages")
+            .then(function (response)
+            {
+              let languages = response.data
+
+              let proficient_string = "The user is proficient in: "
+
+              for(let lang in languages)
+              {
+                console.log(typeof(lang))
+
+                if(data.skills.includes(lang) && languages[lang] > 1000)
+                {
+                  proficient_string+=lang+","
+                }
+              }
+
+              window.alert(proficient_string)
+
+
             })
+            // .catch(function (error) 
+            // {
+            //   console.log(error);
+            // });
+
+
+            // axios.get('//home/repo', data).then((res)=>{
+            //     console.log("Sending data", res
+                
+            //     )
+            // })
         }
     }
 
