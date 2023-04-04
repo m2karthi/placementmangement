@@ -4,7 +4,7 @@
     <v-navigation-drawer
       app
       v-model="drawer"
-      permanent="true"
+      permanent
       height="100vh"
       class="primary"
     >

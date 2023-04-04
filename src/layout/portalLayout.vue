@@ -4,12 +4,12 @@
     <v-navigation-drawer
       app
       v-model="drawer"
-      permanent="true"
+      permanent
       height="100vh"
       class="deep-purple accent-4"
     >
       <div id="logo">
-        <h3 class="white--text">Placement Portal</h3>
+        <h3 class="white--text">Background Buddy</h3>
       </div>
 
       <v-list dense nav>
@@ -72,7 +72,7 @@
       </v-btn>
 
       <v-menu offset-y class="error pa-0 ma-0">
-        <template v-slot:activator="{ on, attrs }">
+        <!-- <template v-slot:activator="{ on, attrs }">
           <v-btn color="primary" text dark v-bind="attrs" v-on="on">
             <v-img
               alt="Vuetify Logo"
@@ -86,13 +86,13 @@
             </div>
             <v-icon class="ml-1" color="red">mdi-chevron-down</v-icon>
           </v-btn>
-        </template>
-        <v-list class="error pa-0 ma-0">
+        </template> -->
+        <!-- <v-list class="error pa-0 ma-0">
           <v-list-item @click="logout">
             <v-icon class="mr-1" color="black">mdi-logout</v-icon>
             <v-list-item-title>Logout</v-list-item-title>
           </v-list-item>
-        </v-list>
+        </v-list> -->
       </v-menu>
 
       <!-- <v-btn href="" text>
@@ -113,17 +113,19 @@
           target="_blank"
           href="https://webilicious.in"
         >
-          Webilicious</a
+          Background Buddy</a
         ></span
       >
       <v-spacer></v-spacer>
       <ul class="footer-right">
+        <div class="d-flex">
+          <li>Associated with</li>
         <li>
-          <a class="link" target="_blank" href="https://webilicious.in"
-            >Webilicious</a
+          <a class="link" target="_blank" href="https://www.reclaimprotocol.org/"
+            >Reclaim Protocol</a
           >
         </li>
-        <li>Help</li>
+        </div>
         <li>Terms</li>
       </ul>
     </v-footer>
@@ -159,28 +161,29 @@ export default {
         {
           title: "Home",
           icon: "fa-solid fa-house",
-          route: "/home",
+          route: "/bgchecker",
         },
         {
-          title: "Drives",
-          route: "/drives",
+          title: "Shield",
+          route: "/bgchecker/shield",
           icon: "fa-solid fa-paperclip",
         },
+        
         {
-          title: "Students",
-          route: "/students",
+          title: "Plagarism",
+          route: "/bgchecker/plagarism",
           icon: "fa-solid fa-graduation-cap",
         },
-        {
-          title: "Companies",
-          route: "/companies",
-          icon: "fa-solid fa-building",
-        },
-        {
-          title: "Settings",
-          route: "/settings",
-          icon: "fa-solid fa-gears",
-        },
+        // {
+        //   title: "Companies",
+        //   route: "/admin/companies",
+        //   icon: "fa-solid fa-building",
+        // },
+        // {
+        //   title: "Settings",
+        //   route: "/admin/settings",
+        //   icon: "fa-solid fa-gears",
+        // },
       ];
       this.accountItems = [
         {
