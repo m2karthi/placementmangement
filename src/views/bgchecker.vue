@@ -41,27 +41,43 @@
                         </v-btn>
         </v-form>
     </v-card>
+    <v-dialog
+     v-model="dialog"
+      width="500">
+
+      <v-card v-if="url!=null">
+        <p>Click this link to Claim Your Proof!</p>
+        <a>{{ url }}</a>
+      </v-card>
+    </v-dialog>
     </div>
   </div>
 </template>
 
 <script allowjs="true">
 import axios from "axios"
+// import VueQrcode from 'vue-qrcode'
 // import { Reclaim } from "@reclaimprotocol/reclaim-sdk/dist";
 
 // import {isAxiosError} from 'axios'
 export default {
     name: 'BackgroundChecker',
+     components: {
+    // VueQrcode,
+  },
     data(){
         return{
+          dialog: false,
             skills: null,
             email: "",
             repo: "",
             items: ["C++", "Java", "Javascript", "Python", "DBMS", "Solidity", "Rust"],
-
+          url: null,
+          callbackId: null,
         }
     },
     methods: {
+
   //     extractGithubRequest(url){
   //       const match = url.match(
 	// 	/^https?:\/\/(www\.)?github.com\/(?<owner>[\w.-]+)\/(?<name>[\w.-]+)/
@@ -76,6 +92,9 @@ export default {
 	// }
 	// return 
   //     },
+  onDataUrlChange(dataUrl) {
+      this.dataUrl = dataUrl
+    },
 
         async sendData(){
           // const repoFullName= extractGithubRequest()
@@ -117,8 +136,9 @@ export default {
             console.log("Sending data", strdata)
             await axios.post('http://localhost:3001/home/repo', data).then((res)=>{
                 console.log("Sending data", res)
-                // var callbackId= res.data.callbackId
-                // var url= res.data.url
+                 this.callbackId= res.data.callbackId
+                 this.url= res.data.url
+                 this.dialog= true
             }).catch((err)=>{
               console.error("Sending err", err)
             })
@@ -142,5 +162,10 @@ export default {
 .v-card{
     padding: 20px;
 }
+/* 
+.link{ 
+  width: 350px;
+  height: auto;
+} */
 
 </style>
