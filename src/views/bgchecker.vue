@@ -47,6 +47,9 @@
 
 <script allowjs="true">
 import axios from "axios"
+// import { Reclaim } from "@reclaimprotocol/reclaim-sdk/dist";
+
+// import {isAxiosError} from 'axios'
 export default {
     name: 'BackgroundChecker',
     data(){
@@ -59,21 +62,68 @@ export default {
         }
     },
     methods: {
-        sendData(){
+  //     extractGithubRequest(url){
+  //       const match = url.match(
+	// 	/^https?:\/\/(www\.)?github.com\/(?<owner>[\w.-]+)\/(?<name>[\w.-]+)/
+	// )
+	// if (!match || !(match.groups?.owner && match.groups?.name)) return null
+	// return `${match.groups.owner}/${match.groups.name}`
+  //     },
+
+  //     handleError(error){
+  //       if (isAxiosError(error) || error instanceof Error) {
+	// 	return error.message
+	// }
+	// return 
+  //     },
+
+        async sendData(){
+          // const repoFullName= extractGithubRequest()
+          // const callbackUrl = "http://localhost:8081/bgchecker" + '/callback/'
+          // const reclaim = new Reclaim(callbackUrl)
+
             var data = {
                 email: this.email,
                 repo: this.repo,
-                skills: this.skills
+               
             }
-            console.log("Sending data", data)
-            axios.get('//home/repo', data).then((res)=>{
-                console.log("Sending data", res
-                
-                )
+            console.log("data",data)
+            //  const user = auth.currentUser;
+    // const connection = reclaim.connect(
+    //     'Github-contributor',
+    //     [
+    //       {
+    //         provider: 'github-contributor',
+    //         params: {
+    //             repo:this.repo
+    //         }
+    //       }
+    //     ]
+    //   )
+
+    //   const callbackId = this.repo.split("/")[1]+"@"+ this.email;
+    //   const template = (await connection).generateTemplate(callbackId)
+      
+    //   const uri = template.url
+    //     console.log(uri,callbackId)
+    //   const templateId = template.id
+    //   console.log("Template id: " + templateId)
+    //   // addRepo(repoName)
+    //   return { uri, callbackId }
+
+
+
+            var strdata= JSON.stringify(data)
+            console.log("Sending data", strdata)
+            await axios.post('http://localhost:3001/home/repo', data).then((res)=>{
+                console.log("Sending data", res)
+                // var callbackId= res.data.callbackId
+                // var url= res.data.url
+            }).catch((err)=>{
+              console.error("Sending err", err)
             })
         }
     }
-
 }
 </script>
 

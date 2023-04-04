@@ -1,16 +1,14 @@
-// callbackUrl is triggered when user submits the claim on Reclaim app
+import { db } from "../firebaseConfig";
+import { Reclaim } from "@reclaimprotocol/reclaim-sdk/dist";
 
-import { Reclaim } from '@reclaimprotocol/reclaim-sdk';
-import { addRepo } from './githubActions';
-import { auth, db } from '../firebase';
-import { doc, updateDoc } from "firebase/firestore";
-const callbackUrl = "https://stickandstack.web.app/" + '/callback/'
 const reclaim = new Reclaim(callbackUrl)
+const callbackUrl = "https://stickandstack.web.app/" + '/callback/'
 
+export const reclaimService = {
+    makeClaim,
+};
 
-
-export const makeClaim = async (repoName) => {
-    const user = auth.currentUser;
+async function makeClaim(email, repoName){
     const connection = reclaim.connect(
         'Github-contributor',
         [
@@ -23,26 +21,24 @@ export const makeClaim = async (repoName) => {
         ]
     )
 
-    const callbackId = repoName.split("/")[1] + "@" + user.email;
+    const callbackId = repoName.split("/")[1] + "@" + email;
     const template = (await connection).generateTemplate(callbackId)
-
     const uri = template.url
     console.log(uri, callbackId)
-    // const templateId = template.id
+    const templateId = template.id
     addRepo(repoName)
     return { uri, callbackId }
 
+    // return await db.collection("pages").doc("exportServiceData").update({ currencies: currencies })
 
 }
 
-
-export const verifyClaim = async (id) => {
+async function verifyClaim(id){
     const data = id.split(/[@](.*)/)
     console.log(data)
-    updateDoc(doc(db, "users", data[1], "repo", data[0]), {
+    const docRef = updateDoc(doc(db, "users", data[1], "repo", data[0]), {
         status: "verified"
     })
 
     return "okay"
-
 }

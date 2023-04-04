@@ -8,11 +8,12 @@
     "lint": " vue-cli-service lint"
   },
   "dependencies": {
-    "apexcharts": "^3.36.3",
     "@reclaimprotocol/reclaim-sdk": "^1.0.7",
+    "apexcharts": "^3.36.3",
     "axios": "^1.2.2",
     "core-js": "^3.6.5",
     "firebase": "^8.3.2",
+    "qrcode": "^1.5.1",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
     "vue-chartist": "^2.2.1",
